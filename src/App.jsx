@@ -1,6 +1,7 @@
 
 import { Box, Container, Heading, Text, VStack, HStack, Link as ChakraLink } from "@chakra-ui/react";
 import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Bookshelf from './components/Bookshelf';
 
 function Nav() {
   return (
