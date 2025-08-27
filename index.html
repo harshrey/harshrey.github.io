@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>shreya hardas</title>
-    <!-- Vite will inject the correct JS bundle during build -->
-      <script type="module" crossorigin src="/assets/index-406da7f1.js"></script>
-    </head>
-    <body>
-        <div id="root"></div>
-</div>
-
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shreya Hardas</title>
+    <script>
+      console.log('[DEBUG] Document loading at:', new Date().toISOString());
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      console.log('[DEBUG] Root element present:', !!document.getElementById('root'));
+    </script>
+  </body>
 </html>
-

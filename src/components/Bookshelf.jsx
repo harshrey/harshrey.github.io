@@ -41,8 +41,9 @@ const books = [
 ];
 
 const Bookshelf = () => {
-  console.log('Rendering Bookshelf component');
-  console.log('Books data:', books);
+  console.log('[DEBUG] Rendering Bookshelf component');
+  console.log('[DEBUG] Books data:', books);
+  console.log('[DEBUG] Component mount time:', new Date().toISOString());
   return (
     <div className="bookshelf-container">
       <h1 className="bookshelf-title">My Top 5 Books</h1>
