@@ -60,58 +60,7 @@ function About() {
 function Blog() {
   return <Text fontSize="xl">Blog page coming soon.</Text>;
 }
-import { SimpleGrid, Image, Tooltip, Box as ChakraBox } from '@chakra-ui/react';
-
-const books = [
-  {
-    title: 'Atomic Habits',
-    author: 'James Clear',
-    cover: 'https://covers.openlibrary.org/b/id/9259256-L.jpg',
-  },
-  {
-    title: 'Deep Work',
-    author: 'Cal Newport',
-    cover: 'https://covers.openlibrary.org/b/id/8155436-L.jpg',
-  },
-  {
-    title: 'The Pragmatic Programmer',
-    author: 'Andrew Hunt, David Thomas',
-    cover: 'https://covers.openlibrary.org/b/id/8228691-L.jpg',
-  },
-  {
-    title: 'Sapiens',
-    author: 'Yuval Noah Harari',
-    cover: 'https://covers.openlibrary.org/b/id/8231996-L.jpg',
-  },
-  // Add more books as desired
-];
-
-function Bookshelf() {
-  return (
-    <Box>
-      <Heading as="h2" size="lg" mb={6} fontFamily="serif" textAlign="center">bookshelf</Heading>
-      <SimpleGrid columns={[2, 3, 4]} spacing={8} justifyItems="center">
-        {books.map((book, idx) => (
-          <Tooltip label={`${book.title} by ${book.author}`} key={idx}>
-            <ChakraBox textAlign="center">
-              <Image
-                src={book.cover}
-                alt={book.title}
-                boxSize="120px"
-                objectFit="cover"
-                borderRadius="md"
-                boxShadow="md"
-                mb={2}
-              />
-              <Text fontSize="md" fontWeight="bold" noOfLines={1}>{book.title}</Text>
-              <Text fontSize="sm" color="gray.500" noOfLines={1}>{book.author}</Text>
-            </ChakraBox>
-          </Tooltip>
-        ))}
-      </SimpleGrid>
-    </Box>
-  );
-}
+// Bookshelf component is imported from './components/Bookshelf'
 function Projects() {
   return <Text fontSize="xl">Projects page coming soon.</Text>;
 }
