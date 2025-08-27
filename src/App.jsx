@@ -1,6 +1,6 @@
 
 import { Box, Container, Heading, Text, VStack, HStack, Link as ChakraLink } from "@chakra-ui/react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function Nav() {
   return (
@@ -13,7 +13,6 @@ function Nav() {
     </HStack>
   );
 }
-
 function Home() {
   return (
     <VStack align="start" spacing={8}>
@@ -60,7 +59,7 @@ export default function App() {
         <Heading as="h1" size="2xl" textAlign="center" fontWeight="400" mb={2} letterSpacing="0.5px" fontFamily="serif">
           shreya hardas
         </Heading>
-        <Router basename={process.env.NODE_ENV === 'production' ? '/' : ''}>
+        <Router>
           <Nav />
           <Routes>
             <Route path="/" element={<Home />} />
