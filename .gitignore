@@ -1,3 +1,5 @@
+# Ignore Vite build output
+dist/
 key
 key.pub
 node_modules/
