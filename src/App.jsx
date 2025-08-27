@@ -15,7 +15,21 @@ function Nav() {
 }
 function Home() {
   return (
-    <VStack align="start" spacing={8}>
+    <VStack align="center" spacing={8}>
+      <Box>
+        <img
+          src={require('../assets/image (1).png')}
+          alt="Profile"
+          style={{
+            width: 120,
+            height: 120,
+            borderRadius: '50%',
+            objectFit: 'cover',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+            marginBottom: 16
+          }}
+        />
+      </Box>
       <Box>
         <Heading as="h2" size="md" mb={2} fontFamily="serif">about</Heading>
         <Text fontSize="lg">I am a computer science graduate, trekker, and book lover. This site is a collection of my thoughts, essays, and projects. I believe in simplicity, clarity, and the power of good writing.</Text>
@@ -45,8 +59,57 @@ function About() {
 function Blog() {
   return <Text fontSize="xl">Blog page coming soon.</Text>;
 }
+import { SimpleGrid, Image, Tooltip, Box as ChakraBox } from '@chakra-ui/react';
+
+const books = [
+  {
+    title: 'Atomic Habits',
+    author: 'James Clear',
+    cover: 'https://covers.openlibrary.org/b/id/9259256-L.jpg',
+  },
+  {
+    title: 'Deep Work',
+    author: 'Cal Newport',
+    cover: 'https://covers.openlibrary.org/b/id/8155436-L.jpg',
+  },
+  {
+    title: 'The Pragmatic Programmer',
+    author: 'Andrew Hunt, David Thomas',
+    cover: 'https://covers.openlibrary.org/b/id/8228691-L.jpg',
+  },
+  {
+    title: 'Sapiens',
+    author: 'Yuval Noah Harari',
+    cover: 'https://covers.openlibrary.org/b/id/8231996-L.jpg',
+  },
+  // Add more books as desired
+];
+
 function Bookshelf() {
-  return <Text fontSize="xl">Bookshelf page coming soon.</Text>;
+  return (
+    <Box>
+      <Heading as="h2" size="lg" mb={6} fontFamily="serif" textAlign="center">bookshelf</Heading>
+      <SimpleGrid columns={[2, 3, 4]} spacing={8} justifyItems="center">
+        {books.map((book, idx) => (
+          <Tooltip label={`${book.title} by ${book.author}`} key={idx}>
+            <ChakraBox textAlign="center">
+              <Image
+                src={book.cover}
+                alt={book.title}
+                boxSize="120px"
+                objectFit="cover"
+                borderRadius="md"
+                boxShadow="md"
+                mb={2}
+              />
+              <Text fontSize="md" fontWeight="bold" noOfLines={1}>{book.title}</Text>
+              <Text fontSize="sm" color="gray.500" noOfLines={1}>{book.author}</Text>
+            </ChakraBox>
+          </Tooltip>
+        ))}
+      </SimpleGrid>
+    </Box>
+  );
 }
 function Projects() {
   return <Text fontSize="xl">Projects page coming soon.</Text>;
