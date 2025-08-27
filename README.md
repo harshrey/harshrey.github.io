@@ -3,7 +3,6 @@
 This is a minimalist personal website built with React, Vite, and Chakra UI, deployed via GitHub Pages.
 
 ## Features
-- Minimalist design inspired by nadh.in
 - Bookshelf, blog, projects, and more
 - Client-side routing with React Router
 - Responsive and fast
