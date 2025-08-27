@@ -1,0 +1,4 @@
+body{margin:0;padding:0;background:#fff;color:#111;font-family:Georgia,serif;}
+#root{min-height:100vh;}
+a{color:#111;text-decoration:none;}
+a:hover{text-decoration:underline;}
