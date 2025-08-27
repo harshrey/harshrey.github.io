@@ -1,8 +1,10 @@
 
 import { Box, Container, Heading, Text, VStack, HStack, Link as ChakraLink } from "@chakra-ui/react";
 import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { SimpleGrid, Image, Tooltip, Box as ChakraBox } from '@chakra-ui/react';
-import Bookshelf from './components/Bookshelf';
+import Bookshelf from './components/Bookshelf.jsx';
+import About from './pages/About';
+import Blog from './pages/Blog';
+import Projects from './pages/Projects';
 
 function Nav() {
   return (
@@ -79,7 +81,15 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/blog" element={<Blog />} />
-            <Route path="/bookshelf" element={<Bookshelf />} />
+            <Route 
+              path="/bookshelf" 
+              element={
+                <>
+                  {console.log('Rendering bookshelf route')}
+                  <Bookshelf />
+                </>
+              } 
+            />
             <Route path="/projects" element={<Projects />} />
           </Routes>
         </Router>
