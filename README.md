@@ -35,9 +35,7 @@ This is a minimalist personal website built with React, Vite, and Chakra UI, dep
 
 
 5. **Deploy to GitHub Pages:**
-    - After running `npm run build`, commit and push the `dist` folder along with your source code to the `main` branch.
-    - Example:
-       ```sh
+   - Just push your changes to the `main` branch. GitHub Actions will automatically build and deploy your site to GitHub Pages.
        git add .
        git commit -m "Deploy: update source and dist for GitHub Pages"
        git push origin main
