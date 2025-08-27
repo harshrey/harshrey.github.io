@@ -1,0 +1,76 @@
+
+import { Box, Container, Heading, Text, VStack, HStack, Link as ChakraLink } from "@chakra-ui/react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
+function Nav() {
+  return (
+    <HStack spacing={8} justify="center" mt={8} mb={12}>
+      <Link to="/" style={{ fontWeight: "bold" }}>home</Link>
+      <Link to="/about" style={{ fontWeight: "bold" }}>about</Link>
+      <Link to="/blog" style={{ fontWeight: "bold" }}>blog</Link>
+      <Link to="/bookshelf" style={{ fontWeight: "bold" }}>bookshelf</Link>
+      <Link to="/projects" style={{ fontWeight: "bold" }}>projects</Link>
+    </HStack>
+  );
+}
+
+function Home() {
+  return (
+    <VStack align="start" spacing={8}>
+      <Box>
+        <Heading as="h2" size="md" mb={2} fontFamily="serif">about</Heading>
+        <Text fontSize="lg">I am a computer science graduate, trekker, and book lover. This site is a collection of my thoughts, essays, and projects. I believe in simplicity, clarity, and the power of good writing.</Text>
+      </Box>
+      <Box>
+        <Heading as="h2" size="md" mb={2} fontFamily="serif">philosophy</Heading>
+        <Text fontSize="lg">Minimalism is not about less, but about more of what matters. I write about technology, learning, and the art of living well. I value deep work, curiosity, and honest communication.</Text>
+      </Box>
+      <Box>
+        <Heading as="h2" size="md" mb={2} fontFamily="serif">projects</Heading>
+        <Text fontSize="lg">From AI code assistants to thread schedulers, I enjoy building things that solve real problems. My work spans software engineering, machine learning, and cloud infrastructure.</Text>
+      </Box>
+      <Box>
+        <Heading as="h2" size="md" mb={2} fontFamily="serif">contact</Heading>
+        <Text fontSize="lg">
+          Find me on <ChakraLink href="https://linkedin.com/in/shreya-hardas" isExternal>LinkedIn</ChakraLink> or <ChakraLink href="https://github.com/harshrey" isExternal>GitHub</ChakraLink>. <br />
+          Email: <ChakraLink href="mailto:hardass@uci.edu">hardass@uci.edu</ChakraLink>
+        </Text>
+      </Box>
+    </VStack>
+  );
+}
+
+function About() {
+  return <Text fontSize="xl">About page coming soon.</Text>;
+}
+function Blog() {
+  return <Text fontSize="xl">Blog page coming soon.</Text>;
+}
+function Bookshelf() {
+  return <Text fontSize="xl">Bookshelf page coming soon.</Text>;
+}
+function Projects() {
+  return <Text fontSize="xl">Projects page coming soon.</Text>;
+}
+
+export default function App() {
+  return (
+    <Box bg="white" minH="100vh" color="black">
+      <Container maxW="lg" pt={12}>
+        <Heading as="h1" size="2xl" textAlign="center" fontWeight="400" mb={2} letterSpacing="0.5px" fontFamily="serif">
+          shreya hardas
+        </Heading>
+        <Router basename={process.env.NODE_ENV === 'production' ? '/' : ''}>
+          <Nav />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/bookshelf" element={<Bookshelf />} />
+            <Route path="/projects" element={<Projects />} />
+          </Routes>
+        </Router>
+      </Container>
+    </Box>
+  );
+}
