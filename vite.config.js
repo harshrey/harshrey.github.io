@@ -1,23 +1,22 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-export default defineConfig(({ command }) => ({
-  base: '/',
+export default defineConfig({
+  base: '/harshrey.github.io/',
   plugins: [react()],
   build: {
     outDir: 'dist',
-    emptyOutDir: true,
-    sourcemap: true,
-    rollupOptions: {
-      input: './index.html',
-      output: {
-        entryFileNames: 'assets/[name].[hash].js',
-        chunkFileNames: 'assets/[name].[hash].js',
-        assetFileNames: 'assets/[name].[hash].[ext]'
-      }
-    }
+    emptyOutDir: true
   },
-  server: {
-    port: 5173,
+  resolve: {
+    extensions: ['.js', '.jsx', '.json']
   },
-}));
+  optimizeDeps: {
+    include: ['react', 'react-dom']
+  },
+  esbuild: {
+    loader: 'jsx',
+    include: /src\/.*\.jsx?$/,
+    exclude: []
+  }
+});
