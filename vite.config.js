@@ -9,14 +9,11 @@ export default defineConfig({
     emptyOutDir: true,
     sourcemap: true,
     rollupOptions: {
-      input: process.env.NODE_ENV === 'development' ? './index.html' : './index.prod.html',
+      input: './index.html',
       output: {
-        manualChunks: undefined
-      }
-    },
-    rollupOptions: {
-      output: {
-        manualChunks: undefined
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash].[ext]'
       }
     }
   },
