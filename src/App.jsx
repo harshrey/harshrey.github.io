@@ -60,9 +60,6 @@ function Home() {
 // Components are imported from their respective files
 
 export default function App() {
-  console.log('[DEBUG] App rendering, current pathname:', window.location.pathname);
-  console.log('[DEBUG] App rendering, current hash:', window.location.hash);
-  
   return (
     <Box bg="white" minH="100vh" color="black">
       <Container maxW="lg" pt={12}>
