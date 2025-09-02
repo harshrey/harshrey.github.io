@@ -6,8 +6,11 @@ This is a minimalist personal website built with React, Vite, and Chakra UI, dep
 - Bookshelf, blog, projects, and more
 - Client-side routing with React Router
 - Responsive and fast
+- Separate configurations for local development and production
 
-## Getting Started
+## Development
+
+### Local Development
 
 1. **Clone the repository:**
    ```sh
@@ -24,10 +27,26 @@ This is a minimalist personal website built with React, Vite, and Chakra UI, dep
    ```sh
    npm run dev
    ```
-   The site will be available at `http://localhost:5173`.
+   The site will be available at `http://localhost:5173`
 
-4. **Build for production:**
-   ```sh
+The development server uses a separate configuration optimized for local development, with features like:
+- Hot Module Replacement (HMR)
+- Source maps
+- Development-specific routing
+- Local environment variables
+
+### Production Build (GitHub Pages)
+
+When you push to the main branch, GitHub Actions will automatically:
+1. Build the site with production settings
+2. Deploy to GitHub Pages
+3. Make it available at https://harshrey.github.io/
+
+To test the production build locally:
+```sh
+npm run build
+npm run preview
+```
    npm run build
    ```
    The output will be in the `dist` folder.

@@ -9,7 +9,7 @@ export default defineConfig({
     emptyOutDir: true,
     sourcemap: true,
     rollupOptions: {
-      input: './index.prod.html',
+      input: process.env.NODE_ENV === 'development' ? './index.html' : './index.prod.html',
       output: {
         manualChunks: undefined
       }
