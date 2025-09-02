@@ -7,35 +7,35 @@ const books = [
     id: 1,
     title: "Atomic Habits",
     author: "James Clear",
-    cover: "https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL.jpg",
+    cover: "/assets/books/atomic-habits.jpg",
     description: "Tiny Changes, Remarkable Results"
   },
   {
     id: 2,
     title: "Deep Work",
     author: "Cal Newport",
-    cover: "https://images-na.ssl-images-amazon.com/images/I/71QKQ9mwV7L.jpg",
+    cover: "/assets/books/deep-work.jpg",
     description: "Rules for Focused Success in a Distracted World"
   },
   {
     id: 3,
     title: "The Psychology of Money",
     author: "Morgan Housel",
-    cover: "https://images-na.ssl-images-amazon.com/images/I/71mzZkZEn3L.jpg",
+    cover: "/assets/books/psychology-of-money.jpg",
     description: "Timeless lessons on wealth, greed, and happiness"
   },
   {
     id: 4,
     title: "Think and Grow Rich",
     author: "Napoleon Hill",
-    cover: "https://images-na.ssl-images-amazon.com/images/I/71UypkUjStL.jpg",
+    cover: "/assets/books/think-and-grow-rich.jpg",
     description: "The Landmark Bestseller Now Revised and Updated for the 21st Century"
   },
   {
     id: 5,
     title: "The Alchemist",
     author: "Paulo Coelho",
-    cover: "https://images-na.ssl-images-amazon.com/images/I/71aFt4+OTOL.jpg",
+    cover: "/assets/books/the-alchemist.jpg",
     description: "A Fable About Following Your Dream"
   }
 ];

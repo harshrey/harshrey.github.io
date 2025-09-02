@@ -22,7 +22,7 @@ function Home() {
     <VStack align="center" spacing={8}>
       <Box>
         <img
-          src="/assets/image (1).png"
+          src="/assets/profile.png"
           alt="Profile"
           style={{
             width: 120,
