@@ -1,8 +1,20 @@
-# Ignore Vite build output
+# Dependencies
+node_modules/
+
+# Build output (temporary)
 dist/
+
+# Environment
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Keys
 key
 key.pub
-node_modules/
-.env
-.DS_Store
-*.log

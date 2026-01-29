@@ -1,77 +1,63 @@
 # harshrey.github.io
 
-This is a minimalist personal website built with React, Vite, and Chakra UI, deployed via GitHub Pages.
+Personal website built with React, Vite, and Chakra UI.
 
-## Features
-- Bookshelf, blog, projects, and more
-- Client-side routing with React Router
-- Responsive and fast
-- Separate configurations for local development and production
+## Setup on New Machine
+
+```sh
+# 1. Install Node.js (if not installed)
+winget install OpenJS.NodeJS.LTS
+
+# 2. Clone repo
+git clone https://github.com/harshrey/harshrey.github.io.git
+cd harshrey.github.io
+
+# 3. Install dependencies
+npm install
+```
 
 ## Development
 
-### Local Development
+```sh
+npm run dev      # Start local dev server at http://localhost:5173
+```
 
-1. **Clone the repository:**
-   ```sh
-   git clone https://github.com/harshrey/harshrey.github.io.git
-   cd harshrey.github.io
-   ```
+## Deploy Changes
 
-2. **Install dependencies:**
-   ```sh
-   npm install
-   ```
+After editing files in `src/`:
 
-3. **Run the development server:**
-   ```sh
-   npm run dev
-   ```
-   The site will be available at `http://localhost:5173`
+```sh
+.\deploy.bat     # Build and prepare for deploy
+git commit -m "your message"
+git push
+```
 
-The development server uses a separate configuration optimized for local development, with features like:
-- Hot Module Replacement (HMR)
-- Source maps
-- Development-specific routing
-- Local environment variables
-
-### Production Build (GitHub Pages)
-
-When you push to the main branch, GitHub Actions will automatically:
-1. Build the site with production settings
-2. Deploy to GitHub Pages
-3. Make it available at https://harshrey.github.io/
-
-To test the production build locally:
+Or manually:
 ```sh
 npm run build
-npm run preview
+xcopy dist\* . /E /Y
+git add . && git commit -m "message" && git push
 ```
-   npm run build
-   ```
-   The output will be in the `dist` folder.
 
+## Project Structure
 
-5. **Deploy to GitHub Pages:**
-   - Just push your changes to the `main` branch. GitHub Actions will automatically build and deploy your site to GitHub Pages.
-       git add .
-       git commit -m "Deploy: update source and dist for GitHub Pages"
-       git push origin main
-       ```
-    - GitHub Pages will serve the site from the root of the `main` branch.
+```
+src/
+  ├── main.jsx          # App entry point
+  ├── App.jsx           # Main app with routing & Home page
+  ├── components/       # Reusable components
+  │   └── Bookshelf.jsx
+  └── pages/            # Page components
+      ├── About.jsx
+      └── Blog.jsx
+assets/                 # Built files (auto-generated)
+public/                 # Static files
+```
 
-**Note:**
-- For development, you can keep `dist` in `.gitignore` to avoid unnecessary commits.
-- For deployment, always include `dist` in your commit so GitHub Pages can serve your site.
+## Editing Content
 
-## Making Changes
-- Edit files in the `src` folder for React components and pages.
-- Update `vite.config.js` for build settings.
-- Push changes to GitHub to update the live site.
-
-## Requirements
-- Node.js and npm
-
-## License
-MIT
-# Updated 2026-01-29
+- **Home (terminal UI):** Edit `src/App.jsx` → `Home` component
+- **About page:** Edit `src/pages/About.jsx`
+- **Blog posts:** Edit `src/pages/Blog.jsx`
+- **Bookshelf:** Edit `src/components/Bookshelf.jsx`
+- **Navigation:** Edit `src/App.jsx` → `Nav` component

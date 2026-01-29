@@ -17,63 +17,68 @@ const About = () => {
 
         {/* Some things about me */}
         <Box w="100%">
-          <Text fontSize="lg" fontWeight="500" mb={4} fontFamily="serif">
+          <Text fontSize="lg" fontWeight="600" mb={4}>
             Some things about me:
           </Text>
           <UnorderedList spacing={2} ml={6} styleType="disc" fontSize="md" lineHeight="1.8">
             <ListItem>Computer science graduate from <ChakraLink href="https://uci.edu" isExternal color="blue.600">UC Irvine</ChakraLink></ListItem>
             <ListItem>Trekker and nature enthusiast — happiest in the mountains</ListItem>
             <ListItem>Book lover with a soft spot for fiction and philosophy</ListItem>
-            <ListItem>Building things at the intersection of software and AI</ListItem>
-            <ListItem>Believer in minimalism, clarity, and good writing</ListItem>
-            <ListItem>Currently exploring machine learning and cloud infrastructure</ListItem>
           </UnorderedList>
         </Box>
 
         {/* Some things I believe */}
         <Box w="100%">
-          <Text fontSize="lg" fontWeight="500" mb={4} fontFamily="serif">
+          <Text fontSize="lg" fontWeight="600" mb={4}>
             Some things I believe:
           </Text>
           <UnorderedList spacing={4} ml={6} styleType="disc" fontSize="md" lineHeight="1.8">
             <ListItem>
-              Simplicity is powerful
-              <UnorderedList mt={2} spacing={1} ml={6} styleType="circle" fontSize="sm" color="gray.700">
-                <ListItem>The best solutions are often the simplest ones</ListItem>
-                <ListItem>Complexity is a form of debt</ListItem>
-                <ListItem>Clarity beats cleverness</ListItem>
+              Clarity is a form of kindness
+              <UnorderedList mt={2} spacing={1} ml={6} styleType="circle" fontSize="sm" color="gray.600">
+                <ListItem>Ambiguity costs everyone time and energy</ListItem>
+                <ListItem>Saying what you mean is harder than it sounds, but worth the effort</ListItem>
+                <ListItem>Good communication is a craft, not a given</ListItem>
               </UnorderedList>
             </ListItem>
             <ListItem>
-              Learning never stops
-              <UnorderedList mt={2} spacing={1} ml={6} styleType="circle" fontSize="sm" color="gray.700">
-                <ListItem>Curiosity is the best compass</ListItem>
-                <ListItem>Reading widely is a superpower</ListItem>
-                <ListItem>Teaching is the best way to learn</ListItem>
+              The map is not the territory
+              <UnorderedList mt={2} spacing={1} ml={6} styleType="circle" fontSize="sm" color="gray.600">
+                <ListItem>Models are useful approximations, not truths</ListItem>
+                <ListItem>Be suspicious of anyone who confuses their framework for reality</ListItem>
+                <ListItem>The best thinkers hold multiple mental models loosely</ListItem>
               </UnorderedList>
             </ListItem>
             <ListItem>
-              Deep work matters
-              <UnorderedList mt={2} spacing={1} ml={6} styleType="circle" fontSize="sm" color="gray.700">
-                <ListItem>Focus is a scarce and valuable resource</ListItem>
-                <ListItem>Distraction is the enemy of meaning</ListItem>
-                <ListItem>Great things take time and attention</ListItem>
+              Incentives explain most behavior
+              <UnorderedList mt={2} spacing={1} ml={6} styleType="circle" fontSize="sm" color="gray.600">
+                <ListItem>Before attributing malice, look for misaligned incentives</ListItem>
+                <ListItem>Systems produce the outcomes they're designed for — intended or not</ListItem>
+                <ListItem>Change the structure, change the behavior</ListItem>
               </UnorderedList>
             </ListItem>
             <ListItem>
-              Build things that solve real problems
-              <UnorderedList mt={2} spacing={1} ml={6} styleType="circle" fontSize="sm" color="gray.700">
-                <ListItem>Start small, iterate fast</ListItem>
-                <ListItem>Ship early, learn from feedback</ListItem>
-                <ListItem>Impact over perfection</ListItem>
+              Compounding applies to more than money
+              <UnorderedList mt={2} spacing={1} ml={6} styleType="circle" fontSize="sm" color="gray.600">
+                <ListItem>Knowledge, relationships, and habits all compound</ListItem>
+                <ListItem>Small consistent efforts beat sporadic bursts</ListItem>
+                <ListItem>The best time to start was yesterday; the second best is now</ListItem>
               </UnorderedList>
             </ListItem>
             <ListItem>
-              Life is about experiences, not possessions
-              <UnorderedList mt={2} spacing={1} ml={6} styleType="circle" fontSize="sm" color="gray.700">
-                <ListItem>Travel expands perspective</ListItem>
-                <ListItem>Relationships are the real wealth</ListItem>
-                <ListItem>Time is the most precious resource</ListItem>
+              Discomfort is information
+              <UnorderedList mt={2} spacing={1} ml={6} styleType="circle" fontSize="sm" color="gray.600">
+                <ListItem>That uneasy feeling usually points to something worth examining</ListItem>
+                <ListItem>Growth rarely feels comfortable in the moment</ListItem>
+                <ListItem>Learn to distinguish productive discomfort from harmful stress</ListItem>
+              </UnorderedList>
+            </ListItem>
+            <ListItem>
+              Most things are reversible
+              <UnorderedList mt={2} spacing={1} ml={6} styleType="circle" fontSize="sm" color="gray.600">
+                <ListItem>Fear of wrong decisions often costs more than the wrong decision itself</ListItem>
+                <ListItem>Bias toward action over analysis paralysis</ListItem>
+                <ListItem>The few truly irreversible choices deserve careful thought; everything else, less so</ListItem>
               </UnorderedList>
             </ListItem>
           </UnorderedList>
@@ -81,7 +86,7 @@ const About = () => {
 
         {/* Contact */}
         <Box w="100%">
-          <Text fontSize="lg" fontWeight="500" mb={4} fontFamily="serif">
+          <Text fontSize="lg" fontWeight="600" mb={4}>
             Get in touch:
           </Text>
           <UnorderedList spacing={2} ml={6} styleType="disc" fontSize="md" lineHeight="1.8">
