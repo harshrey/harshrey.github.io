@@ -6,6 +6,15 @@ const About = () => {
     <Container maxW="2xl" py={8}>
       <VStack spacing={10} align="start">
         
+        {/* Intro */}
+        <Box w="100%">
+          <Text fontSize="lg" lineHeight="1.8">
+            I'm Shreya Hardas. This is my personal website / blog. You can find my professional profile on{' '}
+            <ChakraLink href="https://linkedin.com/in/shreya-hardas" isExternal color="blue.600">LinkedIn</ChakraLink>.
+            I grew up in Pune, spent few years here and there, and now live in Washington.
+          </Text>
+        </Box>
+
         {/* Some things about me */}
         <Box w="100%">
           <Text fontSize="lg" fontWeight="500" mb={4} fontFamily="serif">
