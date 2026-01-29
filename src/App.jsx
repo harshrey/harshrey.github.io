@@ -1,10 +1,11 @@
 
-import { Box, Container, Heading, Text, VStack, HStack, Link as ChakraLink, Input } from "@chakra-ui/react";
+import { Box, Container, Heading, Text, VStack, HStack, Link as ChakraLink, Input, Image } from "@chakra-ui/react";
 import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import Bookshelf from './components/Bookshelf.jsx';
 import About from './pages/About';
 import Blog from './pages/Blog';
+import Paintings from './pages/Paintings';
 
 function Nav() {
   return (
@@ -13,6 +14,7 @@ function Nav() {
       <Link to="/about" style={{ fontWeight: "bold", color: "#2D3748" }}>about</Link>
       <Link to="/blog" style={{ fontWeight: "bold", color: "#2D3748" }}>blog</Link>
       <Link to="/bookshelf" style={{ fontWeight: "bold", color: "#2D3748" }}>bookshelf</Link>
+      <Link to="/paintings" style={{ fontWeight: "bold", color: "#2D3748" }}>paintings</Link>
     </HStack>
   );
 }
@@ -51,15 +53,20 @@ const COMMANDS = {
   location    - Where I'm based
   status      - Current status
   interests   - My interests
+  ls -la      - Browse this site
   links       - Social links
   email       - Contact email
   clear       - Clear terminal
   help        - Show this help`,
   whoami: "Shreya Hardas — CS grad, trekker, builder of things",
-  location: "📍 Seattle, WA (prev: Pune → Irvine)",
+  location: "📍 Seattle, WA",
   status: `🎓 MS Computer Science @ UC Irvine (Dec 2025)
-💼 Building AI-powered developer tools`,
+💼 Trying to understand challenges that happen at scale`,
   interests: "machine-learning/  cloud-infra/  hiking/  books/  minimalism/",
+  "ls -la": `drwxr-xr-x  home/      → you are here
+drwxr-xr-x  about/     → who I am
+drwxr-xr-x  blog/      → things I write
+drwxr-xr-x  bookshelf/ → what I read`,
   links: { text: "github.com/harshrey", href: "https://github.com/harshrey" },
   email: { text: "hardass@uci.edu", href: "mailto:hardass@uci.edu" },
 };
@@ -242,9 +249,12 @@ export default function App() {
   return (
     <Box bg="white" minH="100vh" color="gray.800">
       <Container maxW="lg" pt={12}>
-        <Heading as="h1" size="2xl" textAlign="center" fontWeight="400" mb={2} letterSpacing="0.5px" color="gray.800">
-          shreya hardas
-        </Heading>
+        <HStack spacing={3} justify="center" mb={2}>
+          <Image src="/assets/pine-tree.png" alt="Pine tree" h="50px" w="auto" />
+          <Heading as="h1" size="2xl" textAlign="center" fontWeight="400" letterSpacing="0.5px" color="gray.800">
+            shreya hardas
+          </Heading>
+        </HStack>
         <Router>
           <Nav />
           <Routes>
@@ -260,6 +270,7 @@ export default function App() {
                 </>
               } 
             />
+            <Route path="/paintings" element={<Paintings />} />
           </Routes>
         </Router>
       </Container>

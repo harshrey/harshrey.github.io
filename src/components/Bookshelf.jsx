@@ -3,29 +3,14 @@ import { Box, VStack, Text, Heading } from "@chakra-ui/react";
 
 const books = [
   {
-    title: "Atomic Habits",
-    author: "James Clear",
-    thoughts: "A practical guide that changed how I think about building good habits and breaking bad ones. The concept of 1% improvements really resonated with me."
+    title: "And the Mountains Echoed",
+    author: "Khaled Hosseini",
+    thoughts: "A story that stayed with me long after I finished it. Made me realize how different cultures experience love, loss, and family."
   },
   {
-    title: "Deep Work",
-    author: "Cal Newport",
-    thoughts: "Made me rethink my relationship with focus and productivity. I've implemented dedicated deep work blocks in my daily schedule."
-  },
-  {
-    title: "The Psychology of Money",
-    author: "Morgan Housel",
-    thoughts: "Brilliant insights on how personal finance is more about behavior than mathematics. The chapter on long-term thinking was particularly impactful."
-  },
-  {
-    title: "Think and Grow Rich",
-    author: "Napoleon Hill",
-    thoughts: "A timeless classic that emphasizes the power of personal belief and persistence. The mastermind principle has influenced how I approach networking."
-  },
-  {
-    title: "The Alchemist",
-    author: "Paulo Coelho",
-    thoughts: "A beautiful reminder to follow your dreams and trust the journey. I return to this book whenever I need perspective on life's bigger questions."
+    title: "The Kite Runner",
+    author: "Khaled Hosseini",
+    thoughts: "Opened my eyes to a world I knew nothing about."
   }
 ];
 
@@ -35,11 +20,10 @@ const Bookshelf = () => {
       <VStack spacing={8} align="stretch">
         <Box>
           <Text fontSize="sm" color="gray.600" mb={2}>
-            Last updated: September 2, 2025
+            Last updated: January 2026
           </Text>
           <Text fontSize="lg" mb={6}>
-            Books have been my constant companions through different phases of life. 
-            Here are some that have particularly influenced my thinking and approach to life.
+            Committing myself to 12 books in 2026. Here's what I'm reading and what's stayed with me.
           </Text>
         </Box>
 
