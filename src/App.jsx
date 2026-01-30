@@ -6,15 +6,16 @@ import Bookshelf from './components/Bookshelf.jsx';
 import About from './pages/About';
 import Blog from './pages/Blog';
 import Paintings from './pages/Paintings';
+import Travel from './pages/Travel';
 
 function Nav() {
   return (
     <HStack spacing={8} justify="center" mt={8} mb={12}>
-      <Link to="/" style={{ fontWeight: "bold", color: "#2D3748" }}>home</Link>
       <Link to="/about" style={{ fontWeight: "bold", color: "#2D3748" }}>about</Link>
       <Link to="/blog" style={{ fontWeight: "bold", color: "#2D3748" }}>blog</Link>
       <Link to="/bookshelf" style={{ fontWeight: "bold", color: "#2D3748" }}>bookshelf</Link>
       <Link to="/paintings" style={{ fontWeight: "bold", color: "#2D3748" }}>paintings</Link>
+      <Link to="/travel" style={{ fontWeight: "bold", color: "#2D3748" }}>travel</Link>
     </HStack>
   );
 }
@@ -271,6 +272,7 @@ export default function App() {
               } 
             />
             <Route path="/paintings" element={<Paintings />} />
+            <Route path="/travel" element={<Travel />} />
           </Routes>
         </Router>
       </Container>

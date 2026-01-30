@@ -4,7 +4,7 @@ Personal website built with React, Vite, and Chakra UI.
 
 ## Setup on New Machine
 
-```sh
+```powershell
 # 1. Install Node.js (if not installed)
 winget install OpenJS.NodeJS.LTS
 
@@ -16,48 +16,64 @@ cd harshrey.github.io
 npm install
 ```
 
-## Development
+## Development (Preview Locally)
 
-```sh
-npm run dev      # Start local dev server at http://localhost:5173
+```powershell
+npm run dev
 ```
+Then open http://localhost:5173 in your browser.
 
-## Deploy Changes
+## Deploy to GitHub Pages
 
-After editing files in `src/`:
+After making changes to files in `src/`:
 
-```sh
-.\deploy.bat     # Build and prepare for deploy
-git commit -m "your message"
+```powershell
+# 1. Build the project
+npm run build
+
+# 2. Copy built files to root (GitHub Pages serves from root)
+Copy-Item -Path "dist\*" -Destination "." -Recurse -Force
+
+# 3. Commit and push
+git add -A
+git commit -m "Your commit message here"
 git push
 ```
 
-Or manually:
-```sh
-npm run build
-xcopy dist\* . /E /Y
-git add . && git commit -m "message" && git push
-```
+Wait 1-2 minutes for GitHub Pages to rebuild, then check https://harshrey.github.io
 
 ## Project Structure
 
 ```
 src/
   ├── main.jsx          # App entry point
-  ├── App.jsx           # Main app with routing & Home page
-  ├── components/       # Reusable components
+  ├── App.jsx           # Main app with routing & Home terminal UI
+  ├── components/
   │   └── Bookshelf.jsx
-  └── pages/            # Page components
+  └── pages/
       ├── About.jsx
-      └── Blog.jsx
-assets/                 # Built files (auto-generated)
-public/                 # Static files
+      ├── Blog.jsx
+      └── Paintings.jsx
+public/
+  └── assets/
+      └── paintings/    # Your painting images (1.jpg, 2.jpg, etc.)
+assets/                 # Built files (auto-generated, don't edit)
 ```
 
 ## Editing Content
 
-- **Home (terminal UI):** Edit `src/App.jsx` → `Home` component
+- **Home (terminal UI):** Edit `src/App.jsx` → `Home` component and `COMMANDS` object
 - **About page:** Edit `src/pages/About.jsx`
-- **Blog posts:** Edit `src/pages/Blog.jsx`
+- **Blog posts:** Edit `src/pages/Blog.jsx` → `BLOG_POSTS` array
 - **Bookshelf:** Edit `src/components/Bookshelf.jsx`
+- **Paintings:** Edit `src/pages/Paintings.jsx` → `PAINTINGS` array
 - **Navigation:** Edit `src/App.jsx` → `Nav` component
+
+## Adding New Paintings
+
+1. Add your image to `public/assets/paintings/` (name it `5.jpg`, `6.jpg`, etc.)
+2. Edit `src/pages/Paintings.jsx` and add to the `PAINTINGS` array:
+   ```jsx
+   { id: 5, image: "/assets/paintings/5.jpg", position: "center", zoom: 1 },
+   ```
+3. Build and deploy (see above)

@@ -17,7 +17,9 @@
     "framer-motion": "^10.18.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^7.8.2"
+    "react-globe.gl": "^2.37.0",
+    "react-router-dom": "^7.8.2",
+    "react-simple-maps": "^3.0.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.0.1",
