@@ -63,6 +63,49 @@ const BLOG_POSTS = [
       }
     ]
   },
+  {
+    id: 3,
+    title: "From a Cloudy Afternoon in Redmond",
+    date: "March 2026",
+    location: "Redmond, WA",
+    content: [
+      {
+        type: 'text',
+        value: "The sky stayed gray all afternoon, the kind of soft blanket that makes everything feel quieter than usual. Redmond has a way of doing that — slowing your thoughts just enough to hear them clearly."
+      },
+      {
+        type: 'text',
+        value: "I was sipping my chai by the window, watching sparrows play around the cherry blossom branches — playful with each other, drifting with the wind. Soon the breeze grew stronger, and they found a quieter corner to rest."
+      },
+      {
+        type: 'text',
+        value: "Ajji says there is a lot to observe in the tiniest of things."
+      },
+      {
+        type: 'list',
+        items: [
+          "Warm coffee cooling faster than expected",
+        ]
+      },
+      {
+        type: 'text',
+        value: "There is so much to learn when you live by yourself. Slowly, your life starts sounding like your own voice, and you notice what you truly want to keep and what you can gently let go. You begin to know what you want in life, absolutely uninfluenced by anyone. Your 20s are such a good stage of life to think deeply about your priorities."
+      },
+      {
+        type: 'list',
+        items: [
+          "How to shape your days around what matters most to you",
+          "Whether your room needs a reading chair, or just open empty space",
+          "What kind of food feels like comfort after a long day",
+          "How your own independent habits quietly take shape"
+        ]
+      },
+      {
+        type: 'text',
+        value: "Living this way does a lot for personal growth. It makes you more intentional, more honest with yourself, and more grounded in the choices you make."
+      }
+    ]
+  },
   // ============================================
   // ADD NEW POSTS BELOW - Copy this template:
   // ============================================
@@ -134,10 +177,14 @@ const BlogPost = ({ post }) => {
 };
 
 const Blog = () => {
+  const sortedPosts = [...BLOG_POSTS].sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  );
+
   return (
     <Container maxW="2xl" py={8}>
       <VStack spacing={8} align="start" divider={<Divider borderColor="gray.300" />}>
-        {BLOG_POSTS.map(post => (
+        {sortedPosts.map(post => (
           <BlogPost key={post.id} post={post} />
         ))}
       </VStack>

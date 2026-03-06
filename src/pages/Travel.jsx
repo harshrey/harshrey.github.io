@@ -10,8 +10,10 @@ const CATEGORIES = {
   beach: { icon: '🏖️', color: '#0EA5E9', label: 'Beach' },
   mountain: { icon: '🏔️', color: '#22C55E', label: 'Mountain' },
   city: { icon: '🏙️', color: '#F59E0B', label: 'City' },
+  historic: { icon: '🏛️', color: '#B45309', label: 'Historic' },
   temple: { icon: '🛕', color: '#EC4899', label: 'Temple' },
   nature: { icon: '🌲', color: '#10B981', label: 'Nature' },
+  hackathon: { icon: '💻', color: '#7C3AED', label: 'Hackathon' },
 };
 
 // ============================================
@@ -238,7 +240,7 @@ const TRIPS = [
     lng: 75.7873,
     date: "",
     type: "visited",
-    category: "city",
+    category: "historic",
     story: "Onion kachori & dal bati churma. Desert forts & palaces. Royal colors everywhere."
   },
   {
@@ -300,6 +302,206 @@ const TRIPS = [
     type: "visited",
     category: "mountain",
     story: "Kanchenjunga views. Buddhist monasteries. Himalayan orchids & momos."
+  },
+  {
+    id: 30,
+    name: "Dalhousie",
+    lat: 32.5471,
+    lng: 75.9706,
+    date: "",
+    type: "visited",
+    category: "mountain",
+    story: "Pine-covered hills. Colonial-era charm. Slow mountain mornings."
+  },
+  {
+    id: 31,
+    name: "Dharamshala",
+    lat: 32.2190,
+    lng: 76.3234,
+    date: "",
+    type: "visited",
+    category: "mountain",
+    story: "Prayer flags and mountain mist. Tibetan cafés. Peaceful monastery trails."
+  },
+  {
+    id: 32,
+    name: "Goa",
+    lat: 15.2993,
+    lng: 74.1240,
+    date: "",
+    type: "visited",
+    category: "beach",
+    story: "Beach sunsets and café hopping. Portuguese lanes. Laid-back coastal energy."
+  },
+  {
+    id: 33,
+    name: "Chikmagalur",
+    lat: 13.3153,
+    lng: 75.7754,
+    date: "",
+    type: "visited",
+    category: "nature",
+    story: "Coffee estates in the rain. Misty drives through the Western Ghats. Fresh mountain air."
+  },
+  {
+    id: 34,
+    name: "Gokarna",
+    lat: 14.5504,
+    lng: 74.3188,
+    date: "",
+    type: "visited",
+    category: "beach",
+    story: "Cliffside beach treks. Quiet shores and temple town calm. Arabian Sea blues."
+  },
+  {
+    id: 35,
+    name: "Mysore Dussehra",
+    lat: 12.2958,
+    lng: 76.6394,
+    date: "",
+    type: "visited",
+    category: "historic",
+    story: "Palace lights in full glory. Festival processions, music, and vibrant Karnataka culture."
+  },
+  {
+    id: 36,
+    name: "Murudeshwar",
+    lat: 14.0943,
+    lng: 74.4845,
+    date: "",
+    type: "visited",
+    category: "temple",
+    story: "Sea-facing Shiva statue. Temple views over the coastline. A striking spiritual stop."
+  },
+  {
+    id: 37,
+    name: "Mulki",
+    lat: 13.0890,
+    lng: 74.7935,
+    date: "",
+    type: "visited",
+    category: "beach",
+    story: "Early morning surf sessions. River-meets-sea scenery. Salt air and calm focus."
+  },
+  {
+    id: 38,
+    name: "Niagara Falls",
+    lat: 43.0962,
+    lng: -79.0377,
+    date: "",
+    type: "visited",
+    category: "nature",
+    story: "Thunder of falling water. Mist on your face. One of nature's most powerful spectacles."
+  },
+  {
+    id: 39,
+    name: "Darjeeling",
+    lat: 27.0360,
+    lng: 88.2627,
+    date: "",
+    type: "visited",
+    category: "mountain",
+    story: "Tea gardens on misty hills. Toy train charm. Kanchenjunga peeking through the clouds."
+  },
+  {
+    id: 40,
+    name: "Kolkata",
+    lat: 22.5726,
+    lng: 88.3639,
+    date: "",
+    type: "visited",
+    category: "city",
+    story: "Tram lines and old-world streets. Durga Puja energy. Rosogolla and adda evenings."
+  },
+  {
+    id: 41,
+    name: "Lataguri",
+    lat: 26.8596,
+    lng: 88.7288,
+    date: "",
+    type: "visited",
+    category: "nature",
+    story: "Gateway to Dooars forests. Green silence, tea gardens, and wild river air."
+  },
+  {
+    id: 42,
+    name: "Tirupati",
+    lat: 13.6288,
+    lng: 79.4192,
+    date: "",
+    type: "visited",
+    category: "temple",
+    story: "Sacred hills and temple devotion. Early darshan queues and deep spiritual calm."
+  },
+  {
+    id: 43,
+    name: "Munnar",
+    lat: 10.0889,
+    lng: 77.0595,
+    date: "",
+    type: "visited",
+    category: "nature",
+    story: "Rolling tea estates and cool mountain wind. Curvy roads, clouds, and cardamom-scented air."
+  },
+  {
+    id: 44,
+    name: "Udaipur",
+    lat: 24.5854,
+    lng: 73.7125,
+    date: "",
+    type: "visited",
+    category: "historic",
+    story: "City of lakes and palaces. Sunset boat rides. White marble and royal echoes."
+  },
+  {
+    id: 45,
+    name: "Jaipur",
+    lat: 26.9124,
+    lng: 75.7873,
+    date: "",
+    type: "visited",
+    category: "historic",
+    story: "Pink City bazaars. Fort views and old havelis. Color, craft, and Rajasthani warmth."
+  },
+  {
+    id: 46,
+    name: "Valsad",
+    lat: 20.5992,
+    lng: 72.9342,
+    date: "",
+    type: "visited",
+    category: "city",
+    story: "Coastal Gujarat calm. Street snacks, sea breeze, and relaxed small-town rhythm."
+  },
+  {
+    id: 47,
+    name: "Dhanbad",
+    lat: 23.7957,
+    lng: 86.4304,
+    date: "2022",
+    type: "visited",
+    category: "hackathon",
+    story: "Smart India Hackathon (SIH) 2022 — a fun 36-hour hackathon experience, team hustle, and litti chokha in between coding sprints."
+  },
+  {
+    id: 48,
+    name: "Hogenakkal Falls",
+    lat: 12.1193,
+    lng: 77.7759,
+    date: "",
+    type: "visited",
+    category: "nature",
+    story: "Coracle boat rides and roaring water. A dramatic river canyon with misty viewpoints."
+  },
+  {
+    id: 49,
+    name: "Kolar (KGF)",
+    lat: 12.9565,
+    lng: 78.2730,
+    date: "",
+    type: "visited",
+    category: "mountain",
+    story: "A refreshing trek near Kolar (KGF). Rocky trails, open skies, and an unexpectedly peaceful climb."
   },
 ];
 

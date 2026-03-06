@@ -5,15 +5,20 @@ Personal website built with React, Vite, and Chakra UI.
 ## Setup on New Machine
 
 ```powershell
-# 1. Install Node.js (if not installed)
-winget install OpenJS.NodeJS.LTS
-
-# 2. Clone repo
+# 1. Clone repo
 git clone https://github.com/harshrey/harshrey.github.io.git
 cd harshrey.github.io
 
-# 3. Install dependencies
-npm install
+# 2. One-command setup (installs Volta if needed, pins Node, installs deps)
+npm run setup
+```
+
+This repo is pinned to Node via `package.json` (`volta.node`), so it won't collide with other projects.
+
+If Node is already set up and you only need deps:
+
+```powershell
+npm run setup:quick
 ```
 
 ## Development (Preview Locally)
@@ -22,6 +27,28 @@ npm install
 npm run dev
 ```
 Then open http://localhost:5173 in your browser.
+
+Easiest local run (setup + open browser + start dev server):
+
+```powershell
+npm run local
+```
+
+This command also restores `index.html` from `index.source.html` so Vite always runs against source files.
+
+Check local server status:
+
+```powershell
+npm run local:status
+```
+
+Quick checks:
+
+```powershell
+node -v
+npm -v
+npm run build
+```
 
 ## Deploy to GitHub Pages
 
