@@ -9,6 +9,7 @@ import Paintings from './pages/Paintings';
 import Travel from './pages/Travel';
 import TravelGallery from './pages/TravelGallery';
 import Pune from './pages/Pune';
+import './App.css';
 
 function Nav() {
   return (
@@ -256,7 +257,17 @@ export default function App() {
       <Container maxW="lg" pt={12}>
         <HStack as={ChakraLink} href="#/" aria-label="shreya hardas home" spacing={3} justify="center" mb={2} _hover={{ textDecoration: "none" }}>
           <Image src="/assets/pine-tree.png" alt="Pine tree" h="50px" w="auto" />
-          <Heading as="h1" size="2xl" textAlign="center" fontWeight="400" letterSpacing="0.5px" color="gray.800">
+          <Heading
+            as="h1"
+            fontFamily="'DM Serif Display', Georgia, serif"
+            fontSize={{ base: "clamp(2rem, 10.5vw, 2.75rem)", md: "3.5rem" }}
+            fontWeight="400"
+            lineHeight="1.05"
+            letterSpacing="-0.045em"
+            color="#981b20"
+            textAlign="center"
+            whiteSpace="nowrap"
+          >
             shreya hardas
           </Heading>
         </HStack>

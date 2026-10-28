@@ -163,6 +163,7 @@ export default function Pune() {
   const audioEnabledRef = useRef(false);
   const audioGenerationRef = useRef(0);
   const audioStartingRef = useRef(null);
+  const motionUpdateRef = useRef(0);
 
   const silence = useCallback(() => {
     audioGenerationRef.current++;
@@ -178,6 +179,42 @@ export default function Pune() {
         }
       }
       note.dispose();
+    }
+  }, []);
+
+  const followCurtain = useCallback(speed => {
+    const context = audioRef.current;
+    if (!mountedRef.current || !gatesOpenRef.current || !audioEnabledRef.current
+      || context?.state !== 'running' || document.hidden) return;
+    const now = context.currentTime;
+    if (speed > 0 && now - motionUpdateRef.current < 0.05) return;
+    motionUpdateRef.current = now;
+    const movement = Math.min(1, Math.sqrt(Math.max(0, speed - 0.025) / 1.5));
+    for (const note of notesRef.current) {
+      if (note.retiring || note.disposed || now >= note.stopAt
+        || now < note.start + note.profile.attack + note.profile.hold) continue;
+      const moving = movement > 0;
+      if (!moving && note.motionQuiet) continue;
+      note.motionQuiet = !moving;
+      note.motionTracked = true;
+      const gain = note.envelope.gain;
+      const current = gain.value;
+      if (gain.cancelAndHoldAtTime) {
+        gain.cancelAndHoldAtTime(now);
+      } else {
+        gain.cancelScheduledValues(now);
+        gain.setValueAtTime(current, now);
+      }
+      if (moving) {
+        gain.linearRampToValueAtTime(Math.max(0.0001, note.peak * movement), now + 0.2);
+        gain.exponentialRampToValueAtTime(0.0001, now + note.profile.decay);
+        gain.linearRampToValueAtTime(0, now + note.profile.decay + 0.04);
+        note.stopAt = now + note.profile.stop;
+      } else {
+        gain.linearRampToValueAtTime(0, now + 0.6);
+        note.stopAt = now + 0.7;
+      }
+      note.partials.forEach(({ oscillator }) => oscillator.stop(note.stopAt));
     }
   }, []);
 
@@ -251,7 +288,7 @@ export default function Pune() {
     const generation = audioGenerationRef.current;
     const profile = STRING_VOICES[voice];
     const intensity = Number.isFinite(strength) ? Math.min(1, Math.max(0.45, strength)) : 0.7;
-    const delay = Number.isFinite(delaySeconds) ? Math.min(0.12, Math.max(0, delaySeconds)) : 0;
+    const delay = Number.isFinite(delaySeconds) ? Math.min(0.45, Math.max(0, delaySeconds)) : 0;
     setLastNote(note);
 
     if (notesRef.current.size >= MAX_PLUCKS) {
@@ -263,7 +300,7 @@ export default function Pune() {
         const elapsed = now - oldest.start;
         const { attack, hold, sustain, decay } = oldest.profile;
         const releaseStart = attack + hold;
-        const held = elapsed <= 0 ? 0 : elapsed < attack
+        const held = oldest.motionTracked ? oldest.envelope.gain.value : elapsed <= 0 ? 0 : elapsed < attack
           ? oldest.peak * elapsed / attack
           : elapsed < releaseStart
             ? oldest.peak * (1 - (1 - sustain) * (elapsed - attack) / hold)
@@ -288,7 +325,7 @@ export default function Pune() {
       const start = context.currentTime + delay;
       const peak = 0.14 * intensity;
       const envelope = context.createGain();
-      active = { start, peak, envelope, profile, partials: [], pending: null, retiring: false, disposed: false };
+      active = { start, stopAt: start + profile.stop, peak, envelope, profile, partials: [], pending: null, retiring: false, disposed: false };
       active.dispose = () => {
         if (active.disposed) return;
         active.disposed = true;
@@ -382,6 +419,7 @@ export default function Pune() {
               open={gatesOpen}
               onInteract={prepareAudio}
               onPluck={pluckString}
+              onMotion={followCurtain}
             />
           </ShaniwarWada>
           <p id="pune-courtyard-caption" className="pune-page__scene-caption">
@@ -408,7 +446,7 @@ export default function Pune() {
         </div>
         <p id="pune-chime-instructions">Brush through the strings or sweep gently with your finger. Focus a letter: ← / → change notes, ↑ / ↓ change octave, and Enter repeats.</p>
         <p className="pune-page__sound-note">
-          Two voices for your touch, not a backing track. Higher near the top, lower near the bottom.
+          The sound lingers with the sway, then settles into quiet. Higher near the top, lower near the bottom.
         </p>
         <p className="pune-page__bell-status" role="status" aria-atomic="true">
           {audioError || (lastNote ? `${lastNote.name} · ${lastNote.label} · ${lastNote.octaveLabel}` : 'Only your touch sets the strings singing; each note fades into quiet.')}

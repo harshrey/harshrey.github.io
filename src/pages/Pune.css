@@ -124,7 +124,11 @@
   pointer-events: auto;
   container-type: inline-size;
   touch-action: none;
-  cursor: ew-resize;
+  cursor: grab;
+}
+
+.pune-chimes:active {
+  cursor: grabbing;
 }
 
 .pune-chimes[hidden] {
