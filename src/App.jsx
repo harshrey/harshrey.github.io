@@ -7,15 +7,19 @@ import About from './pages/About';
 import Blog from './pages/Blog';
 import Paintings from './pages/Paintings';
 import Travel from './pages/Travel';
+import TravelGallery from './pages/TravelGallery';
+import Pune from './pages/Pune';
 
 function Nav() {
   return (
-    <HStack spacing={8} justify="center" mt={8} mb={12}>
+    <HStack spacing={8} justify="center" flexWrap="wrap" rowGap={3} mt={8} mb={12}>
       <Link to="/about" style={{ fontWeight: "bold", color: "#2D3748" }}>about</Link>
       <Link to="/blog" style={{ fontWeight: "bold", color: "#2D3748" }}>blog</Link>
       <Link to="/bookshelf" style={{ fontWeight: "bold", color: "#2D3748" }}>bookshelf</Link>
       <Link to="/paintings" style={{ fontWeight: "bold", color: "#2D3748" }}>paintings</Link>
       <Link to="/travel" style={{ fontWeight: "bold", color: "#2D3748" }}>travel</Link>
+      <Link to="/travel-gallery" style={{ fontWeight: "bold", color: "#2D3748" }}>travel gallery</Link>
+      <Link to="/pune" style={{ fontWeight: "bold", color: "#2D3748" }}>pune</Link>
     </HStack>
   );
 }
@@ -273,6 +277,8 @@ export default function App() {
             />
             <Route path="/paintings" element={<Paintings />} />
             <Route path="/travel" element={<Travel />} />
+            <Route path="/travel-gallery" element={<TravelGallery />} />
+            <Route path="/pune" element={<Pune />} />
           </Routes>
         </Router>
       </Container>

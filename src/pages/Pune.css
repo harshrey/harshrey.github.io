@@ -1,0 +1,332 @@
+.pune-page {
+  padding: 18px 0 44px;
+  color: #514638;
+}
+
+.pune-page__heading {
+  margin-bottom: 36px;
+}
+
+.pune-page__eyebrow,
+.pune-page__scene-number {
+  color: #95816b;
+  font: 9px 'Courier New', monospace;
+  letter-spacing: 0.15em;
+}
+
+.pune-page__heading h2 {
+  margin: 8px 0;
+  font: 400 clamp(64px, 8vw, 100px) / 1 Georgia, serif;
+  letter-spacing: -0.07em;
+  color: #6d3e2e;
+}
+
+.pune-page__heading h2 span {
+  color: #b27848;
+}
+
+.pune-page__heading > p:last-child {
+  margin-top: 20px;
+  font: 15px / 1.8 Georgia, serif;
+  color: #8d7c68;
+}
+
+.pune-page__scene {
+  width: 100%;
+}
+
+.pune-page__landmark {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  padding: 26px 20px 24px;
+  border: 1px solid #e8dfd0;
+  border-radius: 140px 140px 16px 16px;
+  background: #f7f0e2;
+  overflow: hidden;
+}
+
+.pune-page__scene-number {
+  display: block;
+  margin-top: 28px;
+  text-align: center;
+}
+
+.pune-page__curtain-toolbar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin: 20px 0 0;
+  text-align: center;
+}
+
+.pune-page__curtain-toolbar p {
+  font: italic 15px / 1.6 Georgia, serif;
+  color: #806344;
+}
+
+.pune-wada {
+  position: relative;
+  display: block;
+  width: 118%;
+  align-self: center;
+  margin-top: 18px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pune-wada__gate-control {
+  position: absolute;
+  left: 47.8%;
+  top: 68.5%;
+  z-index: 2;
+  width: clamp(44px, 5.2%, 60px);
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  transition: left 1100ms cubic-bezier(0.22, 1, 0.36, 1), filter 160ms;
+  cursor: grab;
+  touch-action: manipulation;
+}
+
+.pune-wada__gate-control:hover {
+  filter: brightness(1.15);
+}
+
+.pune-wada__gate-control:active {
+  cursor: grabbing;
+}
+
+.pune-wada[data-open='true'] {
+  margin-bottom: 32px;
+}
+
+.pune-wada[data-open='true'] .pune-wada__gate-control {
+  left: 50%;
+  top: calc(85.1064% + 20px);
+  transform: translateX(-50%);
+}
+
+.pune-chimes {
+  position: absolute;
+  left: 33.7778%;
+  top: 46.383%;
+  width: 32.4444%;
+  height: 38.7234%;
+  z-index: 1;
+  pointer-events: auto;
+  container-type: inline-size;
+  touch-action: none;
+  cursor: ew-resize;
+}
+
+.pune-chimes[hidden] {
+  display: none;
+}
+
+.pune-chimes__strings {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  fill: none;
+  stroke: #ac7c3e;
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  overflow: visible;
+}
+
+.pune-chimes__rail {
+  stroke: #826138;
+  stroke-width: 4;
+}
+
+.pune-chimes__bead {
+  fill: #b48b4e;
+  stroke-width: 1;
+}
+
+.pune-chimes__tag {
+  position: absolute;
+  width: 20%;
+  height: 23.8462%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid #b68a4d;
+  border-radius: 3px 3px 9px 9px;
+  background: linear-gradient(110deg, #f8eaca, #dfc58e);
+  color: #804930;
+  box-shadow: 0 2px 3px #3e352c33;
+  pointer-events: auto;
+  touch-action: none;
+  user-select: none;
+  cursor: grab;
+  transform-origin: center;
+}
+
+.pune-chimes__tag:active {
+  cursor: grabbing;
+}
+
+.pune-chimes__tag > span {
+  font: 500 clamp(16px, 12cqw, 52px) / 1.4 'Nirmala UI', 'Noto Sans Devanagari', sans-serif;
+}
+
+.pune-chimes__tag .pune-chimes__little-bell {
+  position: absolute;
+  top: 100%;
+  left: 30%;
+  width: 40%;
+  height: auto;
+  overflow: visible;
+}
+
+.pune-wada svg {
+  display: block;
+  width: 100%;
+}
+
+.pune-wada__door {
+  transition: transform 1100ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pune-wada__door--left {
+  transform-origin: 294px 300px;
+}
+
+.pune-wada__door--right {
+  transform-origin: 606px 300px;
+}
+
+.pune-wada[data-open='true'] .pune-wada__door--left {
+  transform: translateX(-10px) scaleX(0.08);
+}
+
+.pune-wada[data-open='true'] .pune-wada__door--right {
+  transform: translateX(10px) scaleX(0.08);
+}
+
+.pune-page__scene-caption {
+  min-height: 34px;
+  margin: 8px auto 0;
+  max-width: 420px;
+  text-align: center;
+  color: #8c7961;
+  font: italic 12px / 1.8 Georgia, serif;
+}
+
+.pune-page__chime-controls {
+  margin-top: 24px;
+  text-align: center;
+  font: 12px / 1.8 Georgia, serif;
+  color: #8c7c67;
+}
+
+.pune-page__voice-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.pune-page__voice-buttons button {
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 1px solid #e8dfd0;
+  border-radius: 8px;
+  background: #fffaf0;
+  color: #8b5a35;
+  font: 11px Georgia, serif;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.pune-page__voice-buttons button[aria-pressed='true'] {
+  background: #f7f0e2;
+  border-color: #b68a4d;
+  color: #804930;
+}
+
+.pune-page__bell-status {
+  min-height: 22px;
+  margin-top: 20px;
+  color: #8c7c67;
+  font: 11px / 1.8 Georgia, serif;
+}
+
+.pune-page__sound-note {
+  margin-top: 8px;
+  color: #a29582;
+  font-size: 10px;
+}
+
+.pune-page button:focus-visible {
+  outline: 2px solid #9c5b39;
+  outline-offset: 5px;
+  border-radius: 4px;
+}
+
+.pune-page__credits {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 36px;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid #ede5d7;
+  color: #9a8b76;
+  font-size: 10px;
+  line-height: 1.9;
+}
+
+.pune-page__credits h3 {
+  margin-bottom: 12px;
+  color: #79664f;
+  font: 12px Georgia, serif;
+}
+
+.pune-page__credits p + p {
+  margin-top: 8px;
+}
+
+.pune-page a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 767px) {
+  .pune-wada {
+    width: 240%;
+  }
+
+  .pune-page__credits {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pune-page__landmark {
+    padding: 20px 4px;
+    border-radius: 90px 90px 12px 12px;
+  }
+
+  .pune-page__scene-caption {
+    padding-inline: 16px;
+  }
+
+  .pune-page__credits {
+    gap: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pune-wada__door,
+  .pune-wada__gate-control {
+    transition: none;
+  }
+}

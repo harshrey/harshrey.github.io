@@ -84,7 +84,7 @@ const BLOG_POSTS = [
       {
         type: 'list',
         items: [
-          "Warm coffee cooling faster than expected",
+          "Warm chai cooling faster than expected",
         ]
       },
       {

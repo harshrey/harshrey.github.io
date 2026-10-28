@@ -1,0 +1,243 @@
+.travel-gallery {
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.travel-gallery__eyebrow,
+.airplane-cabin__seat {
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #77756e;
+}
+
+.airplane-cabin {
+  padding: 28px 20px 24px;
+  background: radial-gradient(ellipse at 50% 40%, #fffefb, #eeece6);
+  border: 1px solid #e6e2d9;
+  border-radius: 120px 120px 24px 24px;
+  text-align: center;
+}
+
+.airplane-cabin__seat {
+  margin-bottom: 22px;
+}
+
+.airplane-window-frame {
+  width: min(100%, 290px);
+  margin: 0 auto;
+  padding: 17px;
+  border-radius: 47% / 34%;
+  background: linear-gradient(130deg, #f8f6f1, #ccc8bf 50%, #faf8f3);
+  box-shadow: 0 14px 28px #5c554329, inset 3px 4px 5px #fff, inset -3px -4px 6px #b5b0a5;
+}
+
+.airplane-window {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 0.68;
+  overflow: hidden;
+  isolation: isolate;
+  border: 5px solid #b1aea5;
+  border-radius: 47% / 34%;
+  background: #8db9d3;
+  cursor: pointer;
+  touch-action: pan-x;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.airplane-window:focus-visible {
+  outline: 3px solid #336d8f;
+  outline-offset: 7px;
+}
+
+.airplane-window__sky,
+.airplane-window__shade,
+.airplane-window__glass {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.airplane-window__sky {
+  overflow: hidden;
+  background: linear-gradient(#397eae, #9dc9e1 52%, #e8e4d7 80%, #b1c8cc);
+}
+
+.airplane-window__sun {
+  position: absolute;
+  top: 16%;
+  right: 18%;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #fff3cb;
+  box-shadow: 0 0 48px 20px #fff2ca77;
+}
+
+.airplane-window__cloud {
+  position: absolute;
+  width: 200px;
+  height: 60px;
+  border-radius: 50%;
+  background: #fffdf2d9;
+  filter: blur(9px);
+  box-shadow: 25px -12px 0 -7px #fffdf2, 70px 10px 0 #fffdf2a6;
+  animation: window-cloud-drift 16s ease-in-out infinite alternate;
+}
+
+.airplane-window__cloud--one {
+  top: 48%;
+  left: -60px;
+}
+
+.airplane-window__cloud--two {
+  top: 75%;
+  left: 60px;
+  animation-delay: -8s;
+}
+
+.airplane-window__wing {
+  position: absolute;
+  inset: 49% -10% 12% 18%;
+  clip-path: polygon(0 100%, 82% 9%, 88% 0, 100% 2%, 99% 18%, 49% 100%);
+  background: linear-gradient(160deg, #f9f8ed, #afb8bb 65%, #d7dddb);
+}
+
+.airplane-window__view-label {
+  position: absolute;
+  bottom: 12%;
+  inset-inline: 16px;
+  font-size: 11px;
+  font-style: italic;
+  color: #24485b;
+}
+
+.airplane-window__shade {
+  z-index: 1;
+  background: linear-gradient(100deg, #d6d1c5, #f4f0e5 25%, #e8e3d6 75%, #ccc7bb);
+  border-bottom: 2px solid #b7b0a0;
+  border-radius: 0 0 43% 43% / 0 0 10% 10%;
+  box-shadow: 0 8px 14px #35312740;
+  transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.airplane-window--dragging .airplane-window__shade {
+  transition: none;
+}
+
+.airplane-window__shade-label {
+  position: absolute;
+  top: 46%;
+  inset-inline: 20px;
+  font-size: 12px;
+  font-style: italic;
+  color: #8b8374;
+}
+
+.airplane-window__handle {
+  position: absolute;
+  bottom: 22px;
+  left: calc(50% - 28px);
+  width: 56px;
+  height: 10px;
+  border-radius: 20px;
+  background: #bfb9aa;
+  box-shadow: inset 0 2px 3px #8e8676, 0 2px 1px #fffaf0;
+}
+
+.airplane-window__glass {
+  z-index: 2;
+  background: linear-gradient(120deg, #fff4, transparent 30%, transparent 65%, #fff2);
+  box-shadow: inset 0 0 18px 4px #172f4255;
+  border-radius: inherit;
+}
+
+.airplane-cabin__instructions {
+  margin-top: 25px;
+  font-size: 13px;
+  color: #655f53;
+  line-height: 1.8;
+}
+
+.airplane-cabin__instructions span {
+  font-size: 11px;
+  color: #80796c;
+}
+
+.travel-gallery__photos {
+  text-align: center;
+  animation: gallery-arrival 700ms ease both;
+}
+
+.travel-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 16px;
+}
+
+.travel-gallery__card {
+  margin: 0;
+  padding: 8px 8px 14px;
+  border: 1px solid #e9e5db;
+  background: #fffdf8;
+}
+
+.travel-gallery__scene {
+  height: 150px;
+  background: linear-gradient(#a2c2d0 55%, #82968b 55%);
+  position: relative;
+  overflow: hidden;
+}
+
+.travel-gallery__scene--mountains::after {
+  content: '';
+  position: absolute;
+  inset: 20% -10% 0;
+  background: #738c89;
+  clip-path: polygon(0 100%, 35% 12%, 55% 60%, 75% 30%, 100% 100%);
+}
+
+.travel-gallery__scene--coast {
+  background: linear-gradient(#c1d9df 45%, #6d9f9e 45%, #a5c4ba 78%, #e4d3ad 79%);
+}
+
+.travel-gallery__scene--city::after {
+  content: '';
+  position: absolute;
+  inset: 30% 10% 0;
+  background: #a19483;
+  clip-path: polygon(0 100%, 0 35%, 20% 35%, 20% 0, 45% 0, 45% 50%, 65% 50%, 65% 20%, 90% 20%, 90% 100%);
+}
+
+.travel-gallery__card figcaption {
+  padding-top: 12px;
+  font-size: 12px;
+}
+
+.travel-gallery__card small {
+  display: block;
+  margin-top: 7px;
+  font: 8px 'Courier New', monospace;
+  letter-spacing: 0.08em;
+  color: #8b8374;
+}
+
+@keyframes window-cloud-drift {
+  to { transform: translateX(40px); }
+}
+
+@keyframes gallery-arrival {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .travel-gallery *,
+  .travel-gallery *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
