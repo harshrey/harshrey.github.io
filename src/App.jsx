@@ -1,15 +1,16 @@
 
 import { Box, Container, Heading, Text, VStack, HStack, Link as ChakraLink, Input, Image } from "@chakra-ui/react";
-import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { useState, useRef, useEffect } from "react";
+import { HashRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
+import { useState, useRef, useEffect, lazy, Suspense } from "react";
 import Bookshelf from './components/Bookshelf.jsx';
 import About from './pages/About';
 import Blog from './pages/Blog';
 import Paintings from './pages/Paintings';
-import Travel from './pages/Travel';
-import TravelGallery from './pages/TravelGallery';
 import Pune from './pages/Pune';
 import './App.css';
+
+const Travel = import.meta.env.DEV ? lazy(() => import('./pages/Travel')) : null;
+const TravelGallery = import.meta.env.DEV ? lazy(() => import('./pages/TravelGallery')) : null;
 
 function Nav() {
   return (
@@ -18,8 +19,12 @@ function Nav() {
       <Link to="/blog" style={{ color: "#2D3748" }}>blog</Link>
       <Link to="/bookshelf" style={{ color: "#2D3748" }}>bookshelf</Link>
       <Link to="/paintings" style={{ color: "#2D3748" }}>paintings</Link>
-      <Link to="/travel" style={{ color: "#2D3748" }}>travel</Link>
-      <Link to="/travel-gallery" style={{ color: "#2D3748" }}>travel gallery</Link>
+      {import.meta.env.DEV && (
+        <>
+          <Link to="/travel" style={{ color: "#2D3748" }}>travel</Link>
+          <Link to="/travel-gallery" style={{ color: "#2D3748" }}>travel gallery</Link>
+        </>
+      )}
       <Link to="/music" style={{ color: "#2D3748" }}>music</Link>
       <Link to="/fun" style={{ color: "#2D3748" }}>fun</Link>
     </HStack>
@@ -134,21 +139,13 @@ function Fun() {
 
   return (
     <VStack as="main" aria-label="Fun terminal" align="center" spacing={8}>
-      {/* Profile pic */}
-      <Box>
-        <img
-          src="/assets/profile.png"
-          alt="Profile"
-          style={{
-            width: 120,
-            height: 120,
-            borderRadius: '50%',
-            objectFit: 'cover',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-            marginBottom: 16,
-            border: '3px solid #1a1a1a'
-          }}
-        />
+      <Box w="100%">
+        <Heading as="h2" fontFamily="var(--title-font)" fontSize={{ base: "3xl", md: "4xl" }} fontWeight="400" color="#981b20">
+          the console.
+        </Heading>
+        <Text mt={3} fontSize="sm" fontFamily="Georgia, 'Times New Roman', serif" color="gray.600">
+          A little place to poke around. Type <Text as="kbd" fontFamily="monospace">help</Text> to get started.
+        </Text>
       </Box>
       
       {/* Terminal */}
@@ -291,8 +288,18 @@ export default function App() {
               } 
             />
             <Route path="/paintings" element={<Paintings />} />
-            <Route path="/travel" element={<Travel />} />
-            <Route path="/travel-gallery" element={<TravelGallery />} />
+            <Route
+              path="/travel"
+              element={import.meta.env.DEV
+                ? <Suspense fallback={<Text>Loading travel...</Text>}><Travel /></Suspense>
+                : <Navigate to="/" replace />}
+            />
+            <Route
+              path="/travel-gallery"
+              element={import.meta.env.DEV
+                ? <Suspense fallback={<Text>Loading travel gallery...</Text>}><TravelGallery /></Suspense>
+                : <Navigate to="/" replace />}
+            />
             <Route path="/pune" element={<Pune />} />
             <Route path="/music" element={<Pune />} />
           </Routes>

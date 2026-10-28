@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="540" viewBox="0 0 360 540">
+  <rect width="360" height="540" fill="#243f57"/>
+  <rect x="14" y="14" width="332" height="512" fill="none" stroke="#dac69e"/>
+  <g fill="#f3e7d0" text-anchor="middle" font-family="Georgia, serif">
+    <text x="180" y="66" font-size="16" letter-spacing="2">MARJAN KAMALI</text>
+    <text x="180" y="166" font-size="36">The Lion</text>
+    <text x="180" y="210" font-size="36">Women of</text>
+    <text x="180" y="254" font-size="36">Tehran</text>
+  </g>
+  <path d="M180 474V334M180 403Q140 348 116 365Q130 414 180 427M180 383Q224 334 246 355Q233 396 180 408" fill="none" stroke="#dac69e" stroke-width="3"/>
+  <g fill="#bd7868">
+    <circle cx="180" cy="324" r="20"/><circle cx="163" cy="338" r="20"/><circle cx="197" cy="338" r="20"/>
+  </g>
+  <circle cx="180" cy="338" r="10" fill="#dac69e"/>
+</svg>

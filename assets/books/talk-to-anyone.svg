@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="540" viewBox="0 0 360 540">
+  <rect width="360" height="540" fill="#e1ae55"/>
+  <rect x="14" y="14" width="332" height="512" fill="none" stroke="#28473f"/>
+  <g fill="#28473f" text-anchor="middle" font-family="Georgia, serif">
+    <text x="180" y="70" font-size="17" letter-spacing="2">LEIL LOWNDES</text>
+    <text x="180" y="166" font-size="40">How to</text>
+    <text x="180" y="214" font-size="40">Talk to</text>
+    <text x="180" y="262" font-size="40">Anyone</text>
+  </g>
+  <g fill="none" stroke="#28473f" stroke-width="3">
+    <path d="M78 332H220V407H125L96 432V407H78Z"/>
+    <path d="M240 370H280V454H254L229 477V454H158V429"/>
+    <path d="M102 357H192M102 381H169"/>
+  </g>
+</svg>

@@ -1,4 +1,29 @@
 /* Book surfaces and pull/turn/return sequence adapted from mawise/bookshelf (MIT). */
+.reading-shelf__periods {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #e8e4da;
+}
+
+.reading-shelf__periods button {
+  min-height: 44px;
+  padding: 8px 4px 12px;
+  border-bottom: 2px solid transparent;
+  color: #847c6f;
+  font: 400 20px var(--title-font);
+}
+
+.reading-shelf__periods button[aria-pressed='true'] {
+  border-bottom-color: #981b20;
+  color: #981b20;
+}
+
+.reading-shelf__periods button:focus-visible {
+  outline: 2px solid #337fa3;
+  outline-offset: 3px;
+}
+
 .reading-shelf__layout {
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.4fr);

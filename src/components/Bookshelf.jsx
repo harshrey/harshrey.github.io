@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { Box, usePrefersReducedMotion } from "@chakra-ui/react";
 import ShelfBook, { getBookThickness } from './ShelfBook';
 import ShelfScroller from './ShelfScroller';
@@ -7,6 +7,7 @@ import './Bookshelf.css';
 const defaultBooks = [
   {
     title: "And the Mountains Echoed",
+    shelf: "past",
     author: "Khaled Hosseini",
     cover: "/assets/books/mountains.svg",
     coverWidth: 180,
@@ -19,6 +20,7 @@ const defaultBooks = [
   },
   {
     title: "The Kite Runner",
+    shelf: "past",
     author: "Khaled Hosseini",
     cover: "/assets/books/kite.svg",
     coverWidth: 180,
@@ -31,6 +33,7 @@ const defaultBooks = [
   },
   {
     title: "The Stationery Shop of Tehran",
+    shelf: "past",
     author: "Marjan Kamali",
     cover: "/assets/books/tehran.svg",
     coverWidth: 180,
@@ -42,6 +45,7 @@ const defaultBooks = [
   },
   {
     title: "HBR's 10 Must Reads on Emotional Intelligence",
+    shelf: "2026",
     author: "Harvard Business Review",
     cover: "/assets/books/emotional-intelligence.svg",
     coverWidth: 180,
@@ -50,12 +54,85 @@ const defaultBooks = [
     edition: "Harvard Business Review Press paperback",
     isbn: "9781633690196",
     pageCountSource: "https://www.goodreads.com/work/editions/42799988-hbr-s-10-must-reads-on-emotional-intelligence",
-  }
+  },
+  {
+    title: "HBR's 10 Must Reads on Reinventing HR",
+    author: "Harvard Business Review",
+    shelf: "2026",
+    cover: "/assets/books/hbr-reinventing-hr.png",
+    coverWidth: 1264,
+    coverHeight: 1657,
+    pageCount: 208,
+    edition: "Harvard Business Review Press paperback",
+    isbn: "9781633697843",
+    pageCountSource: "https://business.walmart.com/ip/HBR-s-10-Must-Reads-Hbr-s-10-Must-Reads-Reinventing-HR-with-Bonus-Article-People-Strategy-RAM-Charan-Dominic-Barton-Denn-Paperback-9781633697843/246115240",
+  },
+  {
+    title: "The Lion Women of Tehran",
+    author: "Marjan Kamali",
+    shelf: "2026",
+    cover: "/assets/books/lion-women.svg",
+    coverWidth: 360,
+    coverHeight: 540,
+    pageCount: 336,
+    edition: "Simon & Schuster UK paperback",
+    isbn: "9781398534759",
+    pageCountSource: "https://www.dymocks.com.au/the-lion-women-of-tehran-by-marjan-kamali-9781398534759",
+  },
+  {
+    title: "How to Talk to Anyone",
+    author: "Leil Lowndes",
+    shelf: "2026",
+    cover: "/assets/books/talk-to-anyone.svg",
+    coverWidth: 360,
+    coverHeight: 540,
+    pageCount: 368,
+    edition: "McGraw Hill paperback",
+    isbn: "9780071418584",
+    pageCountSource: "https://business.walmart.com/ip/How-to-Talk-to-Anyone-92-Little-Tricks-for-Big-Success-in-Relationships-Paperback-9780071418584/2156745",
+  },
+  {
+    title: "The Mountain Is You",
+    author: "Brianna Wiest",
+    shelf: "2026",
+    cover: "/assets/books/mountain-is-you.svg",
+    coverWidth: 360,
+    coverHeight: 540,
+    pageCount: 248,
+    edition: "Thought Catalog Books paperback",
+    isbn: "9781949759228",
+    pageCountSource: "https://www.harryhartog.com.au/products/the-mountain-is-you-brianna-wiest-9781949759228",
+  },
+  {
+    title: "When Breath Becomes Air",
+    author: "Paul Kalanithi",
+    shelf: "2026",
+    cover: "/assets/books/when-breath.svg",
+    coverWidth: 360,
+    coverHeight: 540,
+    pageCount: 256,
+    edition: "Random House hardcover",
+    isbn: "9780812988406",
+    pageCountSource: "https://www.penguinrandomhouse.com/books/258507/when-breath-becomes-air-by-paul-kalanithi/",
+  },
+  {
+    title: "The Psychology of Money",
+    author: "Morgan Housel",
+    shelf: "2026",
+    cover: "/assets/books/psychology-money.svg",
+    coverWidth: 360,
+    coverHeight: 540,
+    pageCount: 256,
+    edition: "Harriman House paperback",
+    isbn: "9780857197689",
+    pageCountSource: "https://www.harriman-house.com/authors/morgan-housel/the-psychology-of-money/9780857197689",
+  },
 ];
 
 const restingShelf = { active: null, phase: 'resting', next: null, closing: false };
 
 function shelfReducer(state, action) {
+  if (action.type === 'reset') return restingShelf;
   if (action.type === 'select') {
     if (state.active === null) return { ...restingShelf, active: action.index, phase: 'pulling' };
     if (state.active !== action.index) {
@@ -95,7 +172,9 @@ function shelfReducer(state, action) {
   return state;
 }
 
-const Bookshelf = ({ books = defaultBooks }) => {
+const Bookshelf = ({ books: collection = defaultBooks }) => {
+  const [period, setPeriod] = useState('2026');
+  const books = collection.filter(book => (book.shelf || '2026') === period);
   const [shelf, dispatch] = useReducer(shelfReducer, restingShelf);
   const reducedMotion = usePrefersReducedMotion();
   const moving = !['resting', 'front', 'back'].includes(shelf.phase);
@@ -120,10 +199,27 @@ const Bookshelf = ({ books = defaultBooks }) => {
         if (event.key === 'Escape') dispatch({ type: 'close' });
       }}
     >
+      <div className="reading-shelf__periods" role="group" aria-label="Reading period">
+        {['2026', 'past'].map(value => (
+          <button
+            type="button"
+            key={value}
+            aria-pressed={period === value}
+            onClick={() => {
+              setPeriod(value);
+              dispatch({ type: 'reset' });
+            }}
+          >
+            {value === 'past' ? 'Past' : value}
+          </button>
+        ))}
+      </div>
       <div className="reading-shelf__layout">
         <div className="reading-shelf__intro">
           <p className="reading-shelf__eyebrow">
-            {selectedBook ? `0${shelf.active + 1} / FROM MY BOOKSHELF` : 'A PERSONAL COLLECTION / 2026'}
+            {selectedBook
+              ? `${String(shelf.active + 1).padStart(2, '0')} / FROM MY BOOKSHELF`
+              : `A PERSONAL COLLECTION / ${period === 'past' ? 'PAST' : period}`}
           </p>
           <div className="reading-shelf__story" aria-live="polite" aria-atomic="true">
             <h2>{selectedBook ? selectedBook.title : <>Stories worth<br />keeping.</>}</h2>
@@ -149,7 +245,9 @@ const Bookshelf = ({ books = defaultBooks }) => {
               </>
             ) : (
               <p className="reading-shelf__thoughts">
-                Committing myself to 12 books in 2026. Here's what I'm reading and what's stayed with me.
+                {period === 'past'
+                  ? "Earlier reads, and the stories that have stayed with me."
+                  : "Committing myself to 12 books in 2026. Here's what I'm reading and what's stayed with me."}
               </p>
             )}
           </div>
@@ -162,14 +260,14 @@ const Bookshelf = ({ books = defaultBooks }) => {
             <span aria-hidden="true">&#8592;</span> Put back on shelf
           </button>
           <div className="reading-shelf__collection-meta">
-            <span>{books.length.toString().padStart(2, '0')} BOOKS / 12 BOOK GOAL</span>
-            <span>Last updated: January 2026</span>
+            <span>{books.length.toString().padStart(2, '0')} BOOKS{period === '2026' ? ' / 12 BOOK GOAL' : ' / EARLIER READS'}</span>
+            <span>Last updated: October 2026</span>
           </div>
         </div>
 
         <div className="reading-shelf__collection">
           <div className="reading-shelf__display">
-            <ShelfScroller width={totalWidth} activeIndex={shelf.active} busy={moving}>
+            <ShelfScroller key={period} width={totalWidth} activeIndex={shelf.active} busy={moving}>
             {books.map((book, index) => {
               const thickness = getBookThickness(book.pageCount);
               const offset = position + thickness / 2;
@@ -201,7 +299,7 @@ const Bookshelf = ({ books = defaultBooks }) => {
                 aria-pressed={shelf.active === index}
                 onClick={() => dispatch({ type: 'select', index })}
               >
-                <small aria-hidden="true">0{index + 1}</small>
+                <small aria-hidden="true">{String(index + 1).padStart(2, '0')}</small>
                 {book.title}
               </button>
             ))}
@@ -218,7 +316,7 @@ const Bookshelf = ({ books = defaultBooks }) => {
             <a href="https://github.com/mawise/bookshelf" target="_blank" rel="noopener noreferrer">
               mawise/bookshelf
             </a>
-            {' '}(MIT). Cover artwork is illustrative. Thickness follows page counts
+            {' '}(MIT). Some covers are illustrative. Thickness follows page counts
             for the linked reference editions; your copy may differ.
           </p>
       </footer>

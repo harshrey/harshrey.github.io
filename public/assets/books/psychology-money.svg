@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="540" viewBox="0 0 360 540">
+  <rect width="360" height="540" fill="#a75b47"/>
+  <rect x="14" y="14" width="332" height="512" fill="none" stroke="#f0ddba"/>
+  <g fill="#f8e9cd" text-anchor="middle" font-family="Georgia, serif">
+    <text x="180" y="68" font-size="16" letter-spacing="2">MORGAN HOUSEL</text>
+    <text x="180" y="146" font-size="31">The</text>
+    <text x="180" y="190" font-size="33">Psychology</text>
+    <text x="180" y="234" font-size="33">of Money</text>
+  </g>
+  <g fill="none" stroke="#f0ddba" stroke-width="2">
+    <circle cx="145" cy="374" r="49"/><circle cx="211" cy="408" r="49"/>
+    <circle cx="145" cy="374" r="37"/><circle cx="211" cy="408" r="37"/>
+    <path d="M77 478H282"/>
+  </g>
+</svg>

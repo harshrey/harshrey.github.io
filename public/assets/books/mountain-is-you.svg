@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="540" viewBox="0 0 360 540">
+  <rect width="360" height="540" fill="#c6c8b7"/>
+  <rect x="14" y="14" width="332" height="512" fill="none" stroke="#45554c"/>
+  <g fill="#35473e" text-anchor="middle" font-family="Georgia, serif">
+    <text x="180" y="68" font-size="16" letter-spacing="2">BRIANNA WIEST</text>
+    <text x="180" y="160" font-size="31">The Mountain</text>
+    <text x="180" y="205" font-size="38">Is You</text>
+  </g>
+  <circle cx="242" cy="315" r="36" fill="#eee7d6"/>
+  <path d="M42 444L142 303L213 401L258 344L319 444Z" fill="#647467"/>
+  <path d="M142 303L117 340L141 330L157 347L168 339Z" fill="#eee7d6"/>
+  <path d="M42 463H319" stroke="#45554c" stroke-width="2"/>
+</svg>

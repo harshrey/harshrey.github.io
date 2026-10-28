@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="540" viewBox="0 0 360 540">
+  <rect width="360" height="540" fill="#3c535c"/>
+  <rect x="14" y="14" width="332" height="512" fill="none" stroke="#e1d8bc"/>
+  <g fill="#f4ead5" text-anchor="middle" font-family="Georgia, serif">
+    <text x="180" y="67" font-size="16" letter-spacing="2">PAUL KALANITHI</text>
+    <text x="180" y="163" font-size="32">When Breath</text>
+    <text x="180" y="208" font-size="32">Becomes Air</text>
+  </g>
+  <g fill="none" stroke="#d1c8b0" stroke-width="2">
+    <path d="M76 440Q211 431 250 309Q223 324 199 364Q165 409 76 440Z"/>
+    <path d="M99 432L246 314M138 408L119 373M161 390L163 351M183 367L205 368M198 345L225 344"/>
+  </g>
+  <circle cx="95" cy="304" r="21" fill="#d1c8b0" opacity=".65"/>
+</svg>

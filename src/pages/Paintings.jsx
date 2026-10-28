@@ -31,8 +31,8 @@ const PAINTINGS = [
     photo: [1024, 870], crop: [104, 104, 840, 640], shape: 'landscape',
   },
   {
-    id: 6, title: 'A mountain by the lake', image: '/assets/paintings/mountain-lake-watercolor.png',
-    alt: 'Watercolor of a snowy mountain, pine trees, and a small alpine lake',
+    id: 6, title: 'Mount Rainier', image: '/assets/paintings/mountain-lake-watercolor.png',
+    alt: 'Watercolor of Mount Rainier, pine trees, and a small alpine lake',
     photo: [768, 1024], crop: [120, 110, 560, 850], shape: 'portrait',
   },
   {
