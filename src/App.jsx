@@ -254,7 +254,7 @@ export default function App() {
   return (
     <Box bg="white" minH="100vh" color="gray.800">
       <Container maxW="lg" pt={12}>
-        <HStack spacing={3} justify="center" mb={2}>
+        <HStack as={ChakraLink} href="#/" aria-label="shreya hardas home" spacing={3} justify="center" mb={2} _hover={{ textDecoration: "none" }}>
           <Image src="/assets/pine-tree.png" alt="Pine tree" h="50px" w="auto" />
           <Heading as="h1" size="2xl" textAlign="center" fontWeight="400" letterSpacing="0.5px" color="gray.800">
             shreya hardas
