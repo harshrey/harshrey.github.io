@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="256" viewBox="0 0 180 256">
+  <rect width="180" height="256" fill="#8f4839"/>
+  <rect x="14" y="14" width="152" height="228" rx="1" fill="none" stroke="#f4d8ac" stroke-opacity=".35"/>
+  <text x="90" y="43" fill="#f4d8ac" text-anchor="middle" font-family="Georgia, serif" font-size="9" letter-spacing="1">KHALED HOSSEINI</text>
+  <g fill="#f4d8ac" text-anchor="middle" font-family="Georgia, serif" font-size="29">
+    <text x="90" y="91">The Kite</text>
+    <text x="90" y="124">Runner</text>
+  </g>
+  <path d="m103 145 22 21-22 25-18-25Z" fill="#efd5a2"/>
+  <path d="m103 145 0 46m-18-25 40 0" fill="none" stroke="#8f4839" stroke-width="1"/>
+  <path d="M103 191c-25 7 11 23-22 32" fill="none" stroke="#efd5a2" stroke-width="1"/>
+  <text x="90" y="233" fill="#f4d8ac" text-anchor="middle" font-family="Georgia, serif" font-size="8" font-style="italic">from my bookshelf</text>
+</svg>

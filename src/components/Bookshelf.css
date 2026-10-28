@@ -1,0 +1,483 @@
+/* Book surfaces and pull/turn/return sequence adapted from mawise/bookshelf (MIT). */
+.reading-shelf__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.4fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.reading-shelf__intro {
+  padding: 38px 0 0;
+}
+
+.reading-shelf__eyebrow,
+.reading-shelf__note-label,
+.reading-shelf__collection-meta {
+  color: #7e786e;
+  font: 9px 'Courier New', monospace;
+  letter-spacing: 0.12em;
+}
+
+.reading-shelf__story {
+  min-height: 290px;
+}
+
+.reading-shelf__story h2 {
+  margin: 22px 0;
+  color: #292b28;
+  font: 400 clamp(36px, 4vw, 56px) / 1.06 Georgia, serif;
+  letter-spacing: -0.055em;
+}
+
+.reading-shelf__author {
+  font: 14px Georgia, serif;
+  color: #776d5e;
+}
+
+.reading-shelf__book-meta {
+  margin-top: 12px;
+  color: #847c6f;
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+.reading-shelf__note-label {
+  margin-top: 32px;
+}
+
+.reading-shelf__thoughts {
+  max-width: 330px;
+  margin-top: 16px;
+  color: #6b6b62;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.reading-shelf__put-back {
+  margin: 20px 0;
+  padding: 8px 0;
+  color: #605745;
+  font: 12px Georgia, serif;
+}
+
+.reading-shelf__put-back span {
+  margin-right: 8px;
+}
+
+.reading-shelf__collection-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 30px;
+  font-size: 8px;
+  letter-spacing: 0.07em;
+}
+
+.reading-shelf__collection {
+  min-width: 0;
+}
+
+.reading-shelf__display {
+  border-radius: 20px;
+  padding: 0 16px 10px;
+  background: #f4f3ee;
+  transition: background-color 700ms ease;
+}
+
+.reading-shelf[data-book-open='true'] .reading-shelf__display {
+  background: #eb8c48;
+}
+
+.reading-shelf__instructions {
+  margin-top: 18px;
+  color: #847c6f;
+  font: 11px / 1.8 Georgia, serif;
+  text-align: center;
+}
+
+.reading-shelf__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 48px;
+  margin-top: 64px;
+  padding-top: 20px;
+  border-top: 1px solid #e8e4da;
+  color: #888175;
+  font-size: 10px;
+  line-height: 1.9;
+}
+
+.reading-shelf__footer p {
+  flex: 1;
+}
+
+.reading-shelf__stage {
+  position: relative;
+  height: 430px;
+}
+
+.reading-shelf__edition {
+  position: absolute;
+  top: 26px;
+  left: 0;
+  right: 0;
+  color: #8d7f68;
+  text-align: center;
+  font: 9px 'Courier New', monospace;
+  letter-spacing: 0.18em;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.reading-shelf__viewport {
+  height: 100%;
+  overflow-y: hidden;
+  border-radius: inherit;
+  scrollbar-width: none;
+}
+
+.reading-shelf__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.reading-shelf__row {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 1100px;
+  perspective-origin: calc(50% + var(--shelf-center, 0px)) 50%;
+}
+
+.reading-shelf__row[data-panning] .reading-shelf__book[data-state='front'],
+.reading-shelf__row[data-panning] .reading-shelf__book[data-state='back'] {
+  transition: none;
+}
+
+.reading-shelf__edge {
+  position: absolute;
+  top: 65px;
+  bottom: 34px;
+  width: 40px;
+  z-index: 3;
+  color: #67553c;
+  font: 30px Georgia, serif;
+  cursor: pointer;
+}
+
+.reading-shelf__edge--left {
+  left: 0;
+  background: linear-gradient(90deg, #f4f3eee6, #f4f3ee00);
+}
+
+.reading-shelf__edge--right {
+  right: 0;
+  background: linear-gradient(-90deg, #f4f3eee6, #f4f3ee00);
+}
+
+.reading-shelf__edge:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.reading-shelf__browse-hint {
+  margin-top: 12px;
+  font: 11px Georgia, serif;
+  color: #766b59;
+  text-align: center;
+}
+
+.reading-shelf__slot {
+  position: absolute;
+  bottom: 34px;
+  left: calc(50% - var(--book-width) / 2 + var(--book-offset));
+  width: var(--book-width);
+  height: var(--book-height);
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.reading-shelf__slot--selected {
+  z-index: 2;
+}
+
+.reading-shelf__book {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--book-ink);
+  font-family: Georgia, 'Times New Roman', serif;
+  transform-style: preserve-3d;
+  transform: translateX(0) translateZ(0) rotateY(90deg);
+  transition: transform 650ms cubic-bezier(0.45, 0, 0.2, 1);
+  cursor: pointer;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) {
+  .reading-shelf__book[data-state='resting']:hover,
+  .reading-shelf__book[data-state='resting']:focus-visible {
+    transform: translateX(0) translateZ(14px) rotateY(90deg);
+    transition-duration: 250ms;
+  }
+}
+
+.reading-shelf__book[data-state='pulling'],
+.reading-shelf__book[data-state='unturning-front'],
+.reading-shelf__book[data-state='unturning-back'] {
+  transform: translateX(0) translateZ(120px) rotateY(90deg);
+}
+
+.reading-shelf__book[data-state='presenting'],
+.reading-shelf__book[data-state='front'] {
+  transform: translateX(calc(var(--shelf-center, 0px) - var(--book-offset))) translateZ(120px) rotateY(-12deg);
+}
+
+.reading-shelf__book[data-state='flipping'],
+.reading-shelf__book[data-state='back'] {
+  transform: translateX(calc(var(--shelf-center, 0px) - var(--book-offset))) translateZ(120px) rotateY(180deg);
+}
+
+.reading-shelf__book[data-state='returning'] {
+  transition-duration: 500ms;
+}
+
+.reading-shelf__book:focus-visible {
+  outline: none;
+}
+
+.reading-shelf__book:focus-visible > span {
+  outline: 2px solid #337fa3;
+  outline-offset: 3px;
+}
+
+.reading-shelf__cover,
+.reading-shelf__back,
+.reading-shelf__spine,
+.reading-shelf__pages,
+.reading-shelf__page-top,
+.reading-shelf__page-bottom {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+}
+
+.reading-shelf__cover,
+.reading-shelf__back {
+  border-radius: 2px 4px 4px 2px;
+  background: var(--book-color);
+  box-shadow: 1px 2px 3px #241d1638;
+}
+
+.reading-shelf__cover {
+  transform: translateZ(calc(var(--book-depth) / 2));
+}
+
+.reading-shelf__cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #0003, transparent 3%, #fff2 5%, transparent 8%, transparent 97%, #0002);
+  pointer-events: none;
+}
+
+.reading-shelf__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.reading-shelf__cover-fallback {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  font-size: 24px;
+}
+
+.reading-shelf__cover-fallback small {
+  font-size: 11px;
+}
+
+.reading-shelf__spine {
+  left: calc((var(--book-width) - var(--book-depth)) / 2);
+  right: auto;
+  width: var(--book-depth);
+  padding: 13px 4px;
+  background: linear-gradient(90deg, #0003, #fff1 30%, #0001), var(--book-color);
+  transform: rotateY(-90deg) translateZ(calc(var(--book-width) / 2));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  writing-mode: vertical-rl;
+  text-align: left;
+  font-size: 13px;
+  box-shadow: inset 0 1px #ffffff40, inset 0 -1px #0003;
+}
+
+.reading-shelf__spine small {
+  font-size: 8px;
+}
+
+.reading-shelf__back {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform: rotateY(180deg) translateZ(calc(var(--book-depth) / 2));
+  padding: 20px 14px;
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.reading-shelf__back-heading {
+  padding-bottom: 12px;
+  border-bottom: 1px solid #ffffff50;
+  font-size: 10px;
+  font-style: italic;
+}
+
+.reading-shelf__back small {
+  margin-top: 12px;
+  font-size: 8px;
+  text-align: center;
+}
+
+.reading-shelf__pages {
+  top: 3px;
+  bottom: 3px;
+  left: calc((var(--book-width) - var(--book-depth) + 4px) / 2);
+  width: calc(var(--book-depth) - 4px);
+  background: repeating-linear-gradient(90deg, #ded8c9 0 1px, #f8f2e4 1px 3px);
+  transform: rotateY(90deg) translateZ(calc(var(--book-width) / 2 - 3px));
+}
+
+.reading-shelf__page-top,
+.reading-shelf__page-bottom {
+  left: 3px;
+  right: 3px;
+  top: calc((var(--book-height) - var(--book-depth) + 4px) / 2);
+  height: calc(var(--book-depth) - 4px);
+  background: repeating-linear-gradient(#ded8c9 0 1px, #f8f2e4 1px 3px);
+}
+
+.reading-shelf__page-top {
+  transform: rotateX(90deg) translateZ(calc(var(--book-height) / 2 - 3px));
+}
+
+.reading-shelf__page-bottom {
+  transform: rotateX(-90deg) translateZ(calc(var(--book-height) / 2 - 3px));
+}
+
+.reading-shelf__ledge {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  height: 15px;
+  border-radius: 2px;
+  background: linear-gradient(#ca4d29, #a3341c);
+  box-shadow: 0 12px 16px #71381726;
+}
+
+.reading-shelf__ledge::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: #df643c;
+  clip-path: polygon(7% 0, 93% 0, 100% 100%, 0 100%);
+}
+
+.reading-shelf__index {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  padding: 18px 0 4px;
+}
+
+.reading-shelf__index button {
+  border-bottom: 1px solid #e5dfd3;
+  padding: 10px 0;
+  color: #766b59;
+  text-align: left;
+  font: 12px Georgia, serif;
+  line-height: 1.6;
+}
+
+.reading-shelf__index button[aria-pressed='true'] {
+  border-color: #766b59;
+  color: #332b20;
+}
+
+.reading-shelf__index small {
+  display: block;
+  margin-bottom: 5px;
+  font: 9px 'Courier New', monospace;
+  letter-spacing: 0.1em;
+}
+
+.reading-shelf__put-back:focus-visible,
+.reading-shelf__index button:focus-visible,
+.reading-shelf__viewport:focus-visible,
+.reading-shelf__edge:focus-visible {
+  outline: 2px solid #337fa3;
+  outline-offset: 3px;
+}
+
+.reading-shelf a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 1023px) {
+  .reading-shelf__layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .reading-shelf__intro {
+    padding-top: 0;
+  }
+
+  .reading-shelf__story {
+    min-height: 0;
+  }
+
+  .reading-shelf__story h2 {
+    font-size: 40px;
+  }
+
+  .reading-shelf__collection-meta {
+    margin-top: 20px;
+  }
+
+  .reading-shelf__footer {
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reading-shelf__display {
+    transition: none;
+  }
+
+  .reading-shelf__book,
+  .reading-shelf__book[data-state] {
+    transition: none;
+  }
+}

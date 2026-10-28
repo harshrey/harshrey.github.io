@@ -19,14 +19,14 @@ const STRING_VOICES = {
   tanpura: {
     label: 'Tanpura',
     partials: [0.32, 0.07, 0.09, 0.045],
-    attack: 0.012,
-    hold: 0,
-    sustain: 1,
-    decay: 0.9,
-    partialDecay: 0.14,
-    partialEnd: 0.001,
+    attack: 0.025,
+    hold: 0.45,
+    sustain: 0.9,
+    decay: 4.2,
+    partialDecay: 0.2,
+    partialEnd: 0.3,
     detune: [0, 0, 0, 0],
-    stop: 0.95,
+    stop: 4.3,
   },
 };
 const MAX_PLUCKS = 12;

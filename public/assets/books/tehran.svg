@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="270" viewBox="0 0 180 270">
+  <rect width="180" height="270" fill="#36584b"/>
+  <rect x="14" y="14" width="152" height="242" fill="none" stroke="#ead6a1" stroke-opacity=".5"/>
+  <text x="90" y="43" fill="#ead6a1" text-anchor="middle" font-family="Georgia, serif" font-size="10" letter-spacing="1">MARJAN KAMALI</text>
+  <g fill="#f3e7c7" text-anchor="middle" font-family="Georgia, serif" font-size="24">
+    <text x="90" y="89">The Stationery</text>
+    <text x="90" y="120">Shop of</text>
+    <text x="90" y="151">Tehran</text>
+  </g>
+  <path d="M56 220v-30a34 34 0 0 1 68 0v30Z" fill="#b49d68"/>
+  <path d="M66 220v-29a24 24 0 0 1 48 0v29Z" fill="#ead6a1"/>
+  <path d="m75 203 15-7 15 7v17l-15-7-15 7Z" fill="#36584b"/>
+  <text x="90" y="241" fill="#ead6a1" text-anchor="middle" font-family="Georgia, serif" font-size="8" font-style="italic">from my bookshelf</text>
+</svg>
