@@ -1,8 +1,7 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import { usePrefersReducedMotion } from '@chakra-ui/react';
-import Matter from 'matter-js';
+import { createParticle, createLink, moveParticle, releaseParticle, pushParticles, stepParticles } from './curtainPhysics';
 
-const { Bodies, Body, Composite, Constraint, Engine, Sleeping } = Matter;
 const WIDTH = 300;
 const HEIGHT = 260;
 const TAG_WIDTH = 60;
@@ -69,72 +68,41 @@ const PuneChimes = forwardRef(function PuneChimes({ open, onInteract, onPluck, o
 
   useEffect(() => {
     if (!open) return;
-    const engine = Engine.create({ enableSleeping: true, constraintIterations: 6 });
-    engine.gravity.y = 0.3;
+    const particles = [];
+    const links = [];
     const ropes = STRANDS.map(({ x, length, chimeIndex }) => {
-      const anchor = { x, y: 8 };
+      const anchorParticle = createParticle(x, 8, true);
+      const anchor = anchorParticle.position;
       const nodes = [];
-      const constraints = [];
       for (let i = 0; i < 12; i++) {
-        const node = Bodies.circle(x, anchor.y + (i + 1) * length / 12, 1.5, {
-          frictionAir: reducedMotion ? 0.18 : 0.012,
-          collisionFilter: { mask: 0 },
-        });
-        Body.setMass(node, 0.06);
-        constraints.push(Constraint.create({
-          pointA: i === 0 ? anchor : { x: 0, y: 0 },
-          bodyA: i === 0 ? undefined : nodes[i - 1],
-          bodyB: node,
-          length: length / 12,
-          stiffness: 0.75,
-          damping: 0.02,
-        }));
+        const node = createParticle(x, anchor.y + (i + 1) * length / 12);
+        links.push(createLink(i === 0 ? anchorParticle : nodes[i - 1], node));
         nodes.push(node);
       }
-      const tag = chimeIndex < 0
-        ? Bodies.circle(x, anchor.y + length + 4, 3, { frictionAir: reducedMotion ? 0.18 : 0.012, collisionFilter: { mask: 0 } })
-        : Bodies.rectangle(x, anchor.y + length + 4 + TAG_HEIGHT / 2, TAG_WIDTH, TAG_HEIGHT, {
-          chamfer: { radius: 3 },
-          frictionAir: reducedMotion ? 0.18 : 0.012,
-          restitution: 0.1,
-        });
-      Body.setMass(tag, chimeIndex < 0 ? 0.06 : 0.3);
-      constraints.push(Constraint.create({
-        bodyA: nodes.at(-1),
-        bodyB: tag,
-        pointB: { x: 0, y: chimeIndex < 0 ? 0 : -TAG_HEIGHT / 2 },
-        length: 4,
-        stiffness: 0.75,
-        damping: 0.02,
-      }));
-      Composite.add(engine.world, [...nodes, tag, ...constraints]);
+      const tag = createParticle(x, anchor.y + length + 4 + (chimeIndex < 0 ? 0 : TAG_HEIGHT / 2));
+      links.push(createLink(nodes.at(-1), tag, chimeIndex < 0 ? 0.02 : 1));
+      particles.push(anchorParticle, ...nodes, tag);
       return { anchor, nodes, tag, chimeIndex };
     });
-    const spacers = ropes.slice(1).flatMap((rope, index) => rope.nodes.map((bodyB, row) => {
-      const bodyA = ropes[index].nodes[row];
-      const length = Math.hypot(bodyB.position.x - bodyA.position.x, bodyB.position.y - bodyA.position.y);
-      return {
-        constraint: Constraint.create({ bodyA, bodyB, length, stiffness: 0.18, damping: 0.004 }),
-        minLength: length * 0.6,
-        maxLength: length * 4,
-      };
+    ropes.slice(1).forEach((rope, index) => rope.nodes.forEach((particle, row) => {
+      links.push(createLink(ropes[index].nodes[row], particle, 0.6, 4));
     }));
-    Composite.add(engine.world, spacers.map(spacer => spacer.constraint));
-    const movingBodies = ropes.flatMap(({ nodes, tag }) => [...nodes, tag]);
-    Composite.add(engine.world, [
-      Bodies.rectangle(-12, HEIGHT / 2, 24, HEIGHT * 3, { isStatic: true }),
-      Bodies.rectangle(WIDTH + 12, HEIGHT / 2, 24, HEIGHT * 3, { isStatic: true }),
-      Bodies.rectangle(WIDTH / 2, HEIGHT - 3, WIDTH * 3, 24, { isStatic: true }),
-    ]);
 
     let frame;
     let previousTime;
     let accumulator = 0;
+    let quietFrames = 0;
+    let recoveryFrames = 0;
+    let settling = false;
+    let restOffset = Infinity;
+    let speed = 0;
     const paint = () => {
       ropes.forEach(({ anchor, nodes, tag, chimeIndex }, index) => {
         const path = ropeRefs.current[index];
         const element = chimeIndex >= 0 ? tagRefs.current[chimeIndex] : pendantRefs.current[index];
         if (!path || !element) return;
+        const last = nodes.at(-1).position;
+        tag.angle = -Math.atan2(tag.position.x - last.x, tag.position.y - last.y);
         if (chimeIndex >= 0) {
           element.style.left = `${(tag.position.x - TAG_WIDTH / 2) / WIDTH * 100}%`;
           element.style.top = `${(tag.position.y - TAG_HEIGHT / 2) / HEIGHT * 100}%`;
@@ -155,46 +123,48 @@ const PuneChimes = forwardRef(function PuneChimes({ open, onInteract, onPluck, o
         path.setAttribute('d', `M${anchor.x},${anchor.y} ${curve} L${attachment.x},${attachment.y}`);
       });
     };
-    const partCurtain = () => {
-      const pointer = hoverRef.current;
-      if (!pointer || gestureRef.current) return;
-      ropes.forEach(({ nodes, tag, anchor }) => {
-        [...nodes.slice(1), tag].forEach(body => {
-          if (body === curtainDragRef.current?.bodyB) return;
-          const dx = body.position.x - pointer.x;
-          const dy = body.position.y - pointer.y;
-          const distance = Math.hypot(dx, dy);
-          if (distance >= 60) return;
-          const proximity = 1 - distance / 60;
-          const force = body.mass * 0.0018 * proximity ** 2 * (3 - 2 * proximity) * (reducedMotion ? 0.35 : 1);
-          Body.applyForce(body, body.position, {
-            x: (distance ? dx / distance : Math.sign(anchor.x - WIDTH / 2) || 1) * force,
-            y: (distance ? dy / distance : 0) * force * 0.35,
-          });
-        });
-      });
-    };
     const tick = time => {
       accumulator += previousTime === undefined ? 1000 / 60 : Math.min(time - previousTime, 64);
       previousTime = time;
       while (accumulator >= 1000 / 60) {
-        partCurtain();
-        spacers.forEach(({ constraint, minLength, maxLength }) => {
-          const distance = Math.hypot(
-            constraint.bodyB.position.x - constraint.bodyA.position.x,
-            constraint.bodyB.position.y - constraint.bodyA.position.y,
-          );
-          // Slack side links pass motion between strands without making a rigid sheet.
-          constraint.length = Math.max(minLength, Math.min(maxLength, distance));
-        });
-        Engine.update(engine, 1000 / 60);
+        speed = stepParticles(particles, links, reducedMotion);
+        const released = !gestureRef.current && !curtainDragRef.current;
+        recoveryFrames = released && speed < 0.08 ? recoveryFrames + 1 : 0;
+        if (recoveryFrames >= 20) settling = true;
+        if (settling && released) {
+          let energy = 0;
+          restOffset = 0;
+          ropes.forEach(({ anchor, nodes, tag }) => {
+            [...nodes, tag].forEach(particle => {
+              const correction = (anchor.x - particle.position.x) * (reducedMotion ? 0.18 : 0.08);
+              particle.position.x += correction;
+              particle.velocity.x += correction;
+              particle.previous.x = particle.position.x;
+              energy += particle.velocity.x ** 2 + particle.velocity.y ** 2;
+              restOffset = Math.max(restOffset, Math.abs(anchor.x - particle.position.x));
+            });
+          });
+          speed = Math.sqrt(energy / (particles.length - ropes.length));
+        }
+        quietFrames = speed < 0.02 ? quietFrames + 1 : 0;
         accumulator -= 1000 / 60;
       }
+      const resting = quietFrames >= 20 && restOffset < 0.02 && !gestureRef.current && !curtainDragRef.current;
+      if (resting) {
+        ropes.forEach(({ anchor, nodes, tag }) => {
+          [...nodes, tag].forEach(particle => {
+            particle.position.x = particle.previous.x = anchor.x;
+            particle.velocity.x = 0;
+          });
+        });
+      }
       paint();
-      const energy = movingBodies.reduce((sum, body) => sum + (body.isSleeping ? 0 : body.velocity.x ** 2 + body.velocity.y ** 2), 0);
-      onMotion?.(Math.sqrt(energy / movingBodies.length));
-      const sleeping = Composite.allBodies(engine.world).every(body => body.isStatic || body.isSleeping);
-      frame = sleeping && !gestureRef.current && !hoverRef.current ? undefined : requestAnimationFrame(tick);
+      onMotion?.(resting ? 0 : speed);
+      if (resting) {
+        frame = undefined;
+      } else {
+        frame = requestAnimationFrame(tick);
+      }
     };
     const start = () => {
       if (frame !== undefined) return;
@@ -202,16 +172,44 @@ const PuneChimes = forwardRef(function PuneChimes({ open, onInteract, onPluck, o
       frame = requestAnimationFrame(tick);
     };
     const wake = () => {
-      Composite.allBodies(engine.world).forEach(body => {
-        if (!body.isStatic) Sleeping.set(body, false);
-      });
+      quietFrames = 0;
+      recoveryFrames = 0;
+      settling = false;
+      restOffset = Infinity;
       start();
     };
-    simulationRef.current = { engine, ropes, chimes: ropes.filter(rope => rope.chimeIndex >= 0), wake };
+    simulationRef.current = {
+      ropes,
+      chimes: ropes.filter(rope => rope.chimeIndex >= 0),
+      wake,
+      push: position => {
+        pushParticles(particles, position, reducedMotion ? 0.3 : 1);
+        wake();
+      },
+    };
+    const cancelGestures = () => {
+      if (gestureRef.current) releaseParticle(gestureRef.current.particle);
+      if (curtainDragRef.current) releaseParticle(curtainDragRef.current);
+      gestureRef.current = null;
+      curtainDragRef.current = null;
+      curtainPointerRef.current = null;
+      hoverRef.current = null;
+      lastNoteRef.current = null;
+      wake();
+    };
+    const onVisibilityChange = () => {
+      if (document.hidden) cancelGestures();
+    };
+    window.addEventListener('blur', cancelGestures);
+    window.addEventListener('pagehide', cancelGestures);
+    document.addEventListener('visibilitychange', onVisibilityChange);
     paint();
     if (!reducedMotion) start();
     return () => {
       cancelAnimationFrame(frame);
+      window.removeEventListener('blur', cancelGestures);
+      window.removeEventListener('pagehide', cancelGestures);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
       gestureRef.current = null;
       hoverRef.current = null;
       curtainPointerRef.current = null;
@@ -220,8 +218,6 @@ const PuneChimes = forwardRef(function PuneChimes({ open, onInteract, onPluck, o
       keyboardNotesRef.current = [null, null];
       simulationRef.current = null;
       onMotion?.(0);
-      Composite.clear(engine.world, false);
-      Engine.clear(engine);
     };
   }, [open, reducedMotion, onMotion]);
 
@@ -229,8 +225,8 @@ const PuneChimes = forwardRef(function PuneChimes({ open, onInteract, onPluck, o
     const simulation = simulationRef.current;
     if (!simulation) return;
     simulation.wake();
-    Body.setVelocity(simulation.chimes[index].tag, { x: direction * (reducedMotion ? 0.8 : 4), y: 0 });
-    Body.setAngularVelocity(simulation.chimes[index].tag, direction * (reducedMotion ? 0.005 : 0.025));
+    const tag = simulation.chimes[index].tag;
+    tag.previous.x = tag.position.x - direction * (reducedMotion ? 0.8 : 4);
   };
 
   const ring = index => {
@@ -255,17 +251,15 @@ const PuneChimes = forwardRef(function PuneChimes({ open, onInteract, onPluck, o
   const release = () => {
     const gesture = gestureRef.current;
     if (!gesture) return;
-    const simulation = simulationRef.current;
-    if (simulation) Composite.remove(simulation.engine.world, gesture.constraint);
+    releaseParticle(gesture.particle);
+    simulationRef.current?.wake();
     gestureRef.current = null;
     suppressClickRef.current = true;
   };
 
   const releaseCurtain = (clearHover = true) => {
-    const simulation = simulationRef.current;
-    if (simulation && curtainDragRef.current) {
-      Composite.remove(simulation.engine.world, curtainDragRef.current);
-    }
+    if (curtainDragRef.current) releaseParticle(curtainDragRef.current);
+    simulationRef.current?.wake();
     curtainDragRef.current = null;
     curtainPointerRef.current = null;
     if (clearHover) {
@@ -298,7 +292,10 @@ const PuneChimes = forwardRef(function PuneChimes({ open, onInteract, onPluck, o
     }
     const position = pointerPosition(event);
     if (curtainDragRef.current && curtainPointerRef.current === event.pointerId) {
-      curtainDragRef.current.pointA = position;
+      moveParticle(curtainDragRef.current, position);
+    }
+    if (!hoverRef.current || Math.hypot(position.x - hoverRef.current.x, position.y - hoverRef.current.y) > 0.1) {
+      simulationRef.current?.push(position);
     }
     playStroke(hoverRef.current, position);
     hoverRef.current = position;
@@ -324,7 +321,7 @@ const PuneChimes = forwardRef(function PuneChimes({ open, onInteract, onPluck, o
       }}
       onPointerMove={brush}
       onPointerDown={event => {
-        if (event.button !== 0 || event.target.closest('button') || curtainPointerRef.current !== null) return;
+        if (event.button !== 0 || event.isPrimary === false || event.target.closest('button') || gestureRef.current || curtainPointerRef.current !== null) return;
         onInteract?.();
         hoverRef.current = null;
         lastNoteRef.current = null;
@@ -342,14 +339,9 @@ const PuneChimes = forwardRef(function PuneChimes({ open, onInteract, onPluck, o
             }
           }));
           if (nearest) {
-            curtainDragRef.current = Constraint.create({
-              pointA: position,
-              bodyB: nearest,
-              length: 0,
-              stiffness: 0.2,
-              damping: 0.12,
-            });
-            Composite.add(simulation.engine.world, curtainDragRef.current);
+            nearest.pinned = true;
+            moveParticle(nearest, position);
+            curtainDragRef.current = nearest;
           }
         }
         event.currentTarget.setPointerCapture(event.pointerId);
@@ -387,22 +379,16 @@ const PuneChimes = forwardRef(function PuneChimes({ open, onInteract, onPluck, o
           aria-describedby="pune-chime-instructions"
           style={{ left: `${(x - TAG_WIDTH / 2) / WIDTH * 100}%`, top: `${(length + 12) / HEIGHT * 100}%` }}
           onPointerDown={event => {
-            if (event.button !== 0 || gestureRef.current) return;
+            if (event.button !== 0 || event.isPrimary === false || gestureRef.current || curtainPointerRef.current !== null) return;
             const simulation = simulationRef.current;
             if (!simulation) return;
             keyboardNotesRef.current[index] = null;
             suppressClickRef.current = false;
             hoverRef.current = null;
             simulation.wake();
-            const constraint = Constraint.create({
-              pointA: pointerPosition(event),
-              bodyB: simulation.chimes[index].tag,
-              length: 0,
-              stiffness: 0.15,
-              damping: 0.1,
-            });
-            Composite.add(simulation.engine.world, constraint);
-            gestureRef.current = { index, constraint, pointerId: event.pointerId };
+            const particle = simulation.chimes[index].tag;
+            particle.pinned = true;
+            gestureRef.current = { index, particle, position: pointerPosition(event), pointerId: event.pointerId };
             event.currentTarget.setPointerCapture(event.pointerId);
             onInteract?.();
             onPluck?.(getCurtainNote(simulation.chimes[index].tag.position.x, simulation.chimes[index].tag.position.y), 0.9, 0);
@@ -411,9 +397,10 @@ const PuneChimes = forwardRef(function PuneChimes({ open, onInteract, onPluck, o
             const gesture = gestureRef.current;
             if (!gesture || gesture.index !== index || gesture.pointerId !== event.pointerId) return;
             const position = pointerPosition(event);
-            playStroke(gesture.constraint.pointA, position);
-            gesture.constraint.pointA = position;
-            simulationRef.current?.wake();
+            playStroke(gesture.position, position);
+            moveParticle(gesture.particle, position);
+            simulationRef.current?.push(position);
+            gesture.position = position;
           }}
           onPointerUp={event => {
             if (gestureRef.current?.pointerId === event.pointerId) release();

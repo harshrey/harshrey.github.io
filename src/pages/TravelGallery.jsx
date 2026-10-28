@@ -50,7 +50,7 @@ export default function TravelGallery() {
     <VStack className="travel-gallery" spacing={7} pb={12}>
       <Box textAlign="center">
         <Text className="travel-gallery__eyebrow">a seat by the window</Text>
-        <Heading as="h2" size="xl" fontWeight="400" fontFamily="Georgia, serif" mt={3}>
+        <Heading as="h2" size="xl" fontWeight="400" fontFamily="var(--title-font)" mt={3}>
           travel gallery
         </Heading>
         <Text mt={3} color="gray.600" fontSize="sm">
@@ -116,7 +116,7 @@ export default function TravelGallery() {
 
       <Box id="travel-gallery-photos" hidden={!galleryOpen} w="100%" className="travel-gallery__photos">
         <Text className="travel-gallery__eyebrow">the view beyond</Text>
-        <Heading as="h3" size="md" fontWeight="400" fontFamily="Georgia, serif" mt={3}>
+        <Heading as="h3" size="md" fontWeight="400" fontFamily="var(--title-font)" mt={3}>
           Travel photos coming soon
         </Heading>
         <Text fontSize="sm" color="gray.600" mt={3} mb={6}>

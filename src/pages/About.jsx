@@ -1,48 +1,46 @@
 import React from 'react';
-import { Box, Container, Text, VStack, Link as ChakraLink, ListItem, UnorderedList } from "@chakra-ui/react";
+import { Box, Grid, Image, Text, VStack } from "@chakra-ui/react";
 
 const About = () => {
   return (
-    <Container maxW="2xl" py={8} fontFamily="Georgia, 'Times New Roman', serif">
-      <VStack spacing={10} align="start">
-        
-        {/* Intro */}
-        <Box w="100%">
-          <Text fontSize="lg" lineHeight="1.9">
-            I'm Shreya Hardas. This is my personal website / blog. You can find my professional profile on{' '}
-            <ChakraLink href="https://linkedin.com/in/shreya-hardas" isExternal color="blue.600">LinkedIn</ChakraLink>.
-            I grew up in Pune, spent few years here and there, and now live in Washington.
+    <Box
+      as="main"
+      aria-label="About Shreya"
+      position="relative"
+      left="50%"
+      transform="translateX(-50%)"
+      w={{ base: "100%", md: "min(900px, calc(100vw - 64px))" }}
+      py={{ base: 4, md: 8 }}
+      pb={12}
+      fontFamily="Georgia, 'Times New Roman', serif"
+    >
+      <Grid
+        templateColumns={{ base: "minmax(0, 1fr)", md: "240px minmax(0, 1fr)" }}
+        gap={{ base: 8, md: 12 }}
+        alignItems="start"
+      >
+        <Image
+          src="/assets/home-portrait.png"
+          alt="Shreya Hardas"
+          w={{ base: "180px", md: "240px" }}
+          maxW="100%"
+          h="auto"
+          aspectRatio={3 / 4}
+          justifySelf={{ base: "center", md: "start" }}
+        />
+        <VStack spacing={6} align="start" fontSize="md" lineHeight="1.75">
+          <Text>
+            I'm Shreya, a UC Irvine computer science graduate now working at Microsoft. I grew up in Pune, and Washington is home these days.
           </Text>
-        </Box>
-
-        {/* Some things about me */}
-        <Box w="100%">
-          <Text fontSize="lg" fontWeight="600" mb={4}>
-            Some things about me:
+          <Text>
+            Lately, I've been learning about security. A single network connection can keep me occupied for a while: following the protocols, tracing the data, and figuring out what each side is trusting.
           </Text>
-          <UnorderedList spacing={2} ml={6} styleType="disc" fontSize="md" lineHeight="1.9">
-            <ListItem>Computer science graduate from <ChakraLink href="https://uci.edu" isExternal color="blue.600">UC Irvine</ChakraLink></ListItem>
-            <ListItem>Trekker and nature enthusiast — happiest in the mountains</ListItem>
-          </UnorderedList>
-        </Box>
-
-        {/* Some things I believe */}
-        <Box w="100%">
-          <Text fontSize="lg" fontWeight="600" mb={4}>
-            Some things I believe:
+          <Text>
+            As for life outside work, you'll probably find little pieces of it around the rest of this website.
           </Text>
-          <UnorderedList spacing={3} ml={6} styleType="disc" fontSize="md" lineHeight="1.9">
-            <ListItem>Most advice is autobiographical</ListItem>
-            <ListItem>The things you consistently avoid reveal more than the things you pursue</ListItem>
-            <ListItem>Espresso {">>>"} drip</ListItem>
-            <ListItem>Better to get your dopamine from improving your ideas than from having them validated</ListItem>
-            <ListItem>Mentorship should be free if it's a side gig — don't monetize guidance when you're already doing fine</ListItem>
-            <ListItem><ChakraLink href="https://sbmueller.github.io/nohello/" isExternal color="blue.600">No hello</ChakraLink></ListItem>
-          </UnorderedList>
-        </Box>
-
-      </VStack>
-    </Container>
+        </VStack>
+      </Grid>
+    </Box>
   );
 };
 

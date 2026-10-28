@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 
 export function getBookThickness(pageCount) {
   const pages = Number.isFinite(pageCount) && pageCount > 0 ? pageCount : 300;
@@ -33,11 +33,37 @@ function coverAppearance(image) {
 export default function ShelfBook({ book, offset, phase, onSelect, onSettled }) {
   const [appearance, setAppearance] = useState({});
   const [failedCover, setFailedCover] = useState(false);
+  const spineRef = useRef(null);
   const width = 160;
   const height = width / (appearance.aspectRatio || book.coverWidth / book.coverHeight);
   const depth = getBookThickness(book.pageCount);
   const selected = phase !== 'resting';
   const action = !selected ? 'Take off the shelf' : phase === 'back' ? 'Put back' : 'Turn over';
+
+  useLayoutEffect(() => {
+    let disposed = false;
+    const fitSpine = () => {
+      if (disposed || !spineRef.current) return;
+      const spine = spineRef.current;
+      const style = getComputedStyle(spine);
+      const length = height - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom) - 2;
+      const breadth = depth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight) - parseFloat(style.gap);
+      let size = 13;
+      spine.style.setProperty('--spine-font-size', `${size}px`);
+      // Measure the vertical line boxes, allowing for glyph overhang and rounding.
+      for (let pass = 0; pass < 3; pass++) {
+        const textLength = Math.max(...Array.from(spine.children, child => child.scrollHeight));
+        const textBreadth = Array.from(spine.children).reduce((sum, child) => sum + child.offsetWidth, 0);
+        const scale = Math.min(1, length / Math.max(1, textLength), breadth / Math.max(1, textBreadth));
+        if (scale >= 1) break;
+        size *= scale * 0.98;
+        spine.style.setProperty('--spine-font-size', `${size}px`);
+      }
+    };
+    fitSpine();
+    document.fonts.ready.then(fitSpine);
+    return () => { disposed = true; };
+  }, [book.title, book.author, height, depth]);
 
   const loadCover = event => {
     const image = event.currentTarget;
@@ -87,7 +113,7 @@ export default function ShelfBook({ book, offset, phase, onSelect, onSettled }) 
             </span>
           )}
         </span>
-        <span className="reading-shelf__spine" aria-hidden="true">
+        <span ref={spineRef} className="reading-shelf__spine" aria-hidden="true">
           <span>{book.title}</span>
           <small>{book.author}</small>
         </span>

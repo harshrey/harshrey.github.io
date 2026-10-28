@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Container, Heading, Text, VStack, UnorderedList, ListItem, Divider, Collapse, HStack, Icon } from "@chakra-ui/react";
+import { Box, Container, Heading, Text, VStack, UnorderedList, ListItem, Divider, Collapse, HStack, Icon, Link as ChakraLink } from "@chakra-ui/react";
 
 // ============================================
 // BLOG POSTS - Add new posts here!
@@ -10,6 +10,24 @@ import { Box, Container, Heading, Text, VStack, UnorderedList, ListItem, Divider
 //   - { type: 'list', items: ['item 1', 'item 2', 'item 3'] }
 
 const BLOG_POSTS = [
+  {
+    id: 4,
+    title: "Some things I believe",
+    date: "October 28, 2026",
+    content: [
+      {
+        type: 'list',
+        items: [
+          "Most advice is autobiographical",
+          "The things you consistently avoid reveal more than the things you pursue",
+          "Espresso >>> drip",
+          "Better to get your dopamine from improving your ideas than from having them validated",
+          "Mentorship should be free if it's a side gig — don't monetize guidance when you're already doing fine",
+          <ChakraLink href="https://sbmueller.github.io/nohello/" isExternal color="blue.600" textDecoration="underline">No hello</ChakraLink>,
+        ]
+      }
+    ]
+  },
   {
     id: 1,
     title: "Notes from 3 AM",
@@ -137,7 +155,7 @@ const BlogPost = ({ post }) => {
         _hover={{ opacity: 0.8 }}
       >
         <HStack justify="space-between" align="center">
-          <Heading as="h2" size="xl" fontWeight="600">
+          <Heading as="h2" size="xl" fontWeight="400" fontFamily="var(--title-font)">
             {post.title}
           </Heading>
           <Text fontSize="xl" color="gray.400" transform={isOpen ? "rotate(180deg)" : "rotate(0deg)"} transition="transform 0.2s">
@@ -145,7 +163,7 @@ const BlogPost = ({ post }) => {
           </Text>
         </HStack>
         <Text fontSize="sm" color="gray.500" mb={2}>
-          {post.date} · {post.location}
+          {post.date}{post.location && ` · ${post.location}`}
         </Text>
       </Box>
       

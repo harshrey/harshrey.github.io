@@ -25,7 +25,7 @@
 .reading-shelf__story h2 {
   margin: 22px 0;
   color: #292b28;
-  font: 400 clamp(36px, 4vw, 56px) / 1.06 Georgia, serif;
+  font: 400 clamp(36px, 4vw, 56px) / 1.06 var(--title-font);
   letter-spacing: -0.055em;
 }
 
@@ -57,7 +57,7 @@
   margin: 20px 0;
   padding: 8px 0;
   color: #605745;
-  font: 12px Georgia, serif;
+  font: 12px var(--title-font);
 }
 
 .reading-shelf__put-back span {
@@ -301,7 +301,19 @@
   justify-content: center;
   gap: 20px;
   padding: 20px;
-  font-size: 24px;
+  font-size: clamp(14px, calc(var(--book-height) / 12), 20px);
+  line-height: 1.2;
+  text-align: center;
+}
+
+.reading-shelf__cover-fallback > span,
+.reading-shelf__cover-fallback small {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.reading-shelf__cover-fallback > span {
+  font-family: var(--title-font);
 }
 
 .reading-shelf__cover-fallback small {
@@ -312,21 +324,31 @@
   left: calc((var(--book-width) - var(--book-depth)) / 2);
   right: auto;
   width: var(--book-depth);
-  padding: 13px 4px;
+  padding: 12px 2px;
   background: linear-gradient(90deg, #0003, #fff1 30%, #0001), var(--book-color);
   transform: rotateY(-90deg) translateZ(calc(var(--book-width) / 2));
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 8px;
+  justify-content: center;
+  gap: 2px;
   writing-mode: vertical-rl;
+  text-orientation: sideways;
+  white-space: nowrap;
   text-align: left;
-  font-size: 13px;
+  font-size: var(--spine-font-size, 13px);
+  line-height: normal;
   box-shadow: inset 0 1px #ffffff40, inset 0 -1px #0003;
 }
 
+.reading-shelf__spine > span {
+  flex-shrink: 0;
+  font-family: var(--title-font);
+}
+
 .reading-shelf__spine small {
-  font-size: 8px;
+  flex-shrink: 0;
+  font-size: 0.6em;
 }
 
 .reading-shelf__back {

@@ -404,8 +404,8 @@ export default function Pune() {
     >
       <header className="pune-page__heading">
         <p className="pune-page__eyebrow">A CITY IN SMALL MOMENTS</p>
-        <h2>pune<span>.</span></h2>
-        <p>A doorway, a quiet moment, and letters with a sound of their own.</p>
+        <h2>music<span>.</span></h2>
+        <p lang="mr">पेटीचे सूर आणि तंबोऱ्याचा नाद मला मनापासून आवडतात. म्हणून हा छोटासा सुरांचा खेळ!</p>
       </header>
 
       <div className="pune-page__scene">
@@ -456,8 +456,8 @@ export default function Pune() {
       <footer className="pune-page__credits">
         <div>
           <h3>Credits</h3>
-          <p>Rope physics: <a href="https://github.com/liabru/matter-js" target="_blank" rel="noopener noreferrer">Matter.js by Liam Brummitt and contributors</a> (MIT).</p>
-          <p>Hanging-string reference: <a href="https://codepen.io/shubniggurath/pen/ZYpjorm" target="_blank" rel="noopener noreferrer">Liam Egan's CodePen</a>. Reference only; its source was not reused.</p>
+          <p>Curtain physics: Verlet particles with loose distance constraints, following the shared letter-curtain example.</p>
+          <p>Hanging-string reference: <a href="https://codepen.io/shubniggurath/pen/ZYpjorm" target="_blank" rel="noopener noreferrer">Liam Egan's CodePen</a>. No external CodePen scripts are loaded.</p>
           <p>
             Interaction inspiration: <a href="https://marinabudarina.github.io/chimes/" target="_blank" rel="noopener noreferrer">Chimes by Marina Budarina</a>
             {' '}/ <a href="https://github.com/marinabudarina/chimes" target="_blank" rel="noopener noreferrer">her source repository</a>.

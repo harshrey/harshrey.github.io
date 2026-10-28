@@ -13,14 +13,15 @@ import './App.css';
 
 function Nav() {
   return (
-    <HStack spacing={8} justify="center" flexWrap="wrap" rowGap={3} mt={8} mb={12}>
-      <Link to="/about" style={{ fontWeight: "bold", color: "#2D3748" }}>about</Link>
-      <Link to="/blog" style={{ fontWeight: "bold", color: "#2D3748" }}>blog</Link>
-      <Link to="/bookshelf" style={{ fontWeight: "bold", color: "#2D3748" }}>bookshelf</Link>
-      <Link to="/paintings" style={{ fontWeight: "bold", color: "#2D3748" }}>paintings</Link>
-      <Link to="/travel" style={{ fontWeight: "bold", color: "#2D3748" }}>travel</Link>
-      <Link to="/travel-gallery" style={{ fontWeight: "bold", color: "#2D3748" }}>travel gallery</Link>
-      <Link to="/pune" style={{ fontWeight: "bold", color: "#2D3748" }}>pune</Link>
+    <HStack as="nav" aria-label="Main navigation" fontFamily="var(--title-font)" fontWeight="400" spacing={8} justify="center" flexWrap="wrap" rowGap={4} mt={8} mb={12}>
+      <Link to="/" style={{ color: "#2D3748" }}>about</Link>
+      <Link to="/blog" style={{ color: "#2D3748" }}>blog</Link>
+      <Link to="/bookshelf" style={{ color: "#2D3748" }}>bookshelf</Link>
+      <Link to="/paintings" style={{ color: "#2D3748" }}>paintings</Link>
+      <Link to="/travel" style={{ color: "#2D3748" }}>travel</Link>
+      <Link to="/travel-gallery" style={{ color: "#2D3748" }}>travel gallery</Link>
+      <Link to="/music" style={{ color: "#2D3748" }}>music</Link>
+      <Link to="/fun" style={{ color: "#2D3748" }}>fun</Link>
     </HStack>
   );
 }
@@ -69,15 +70,15 @@ const COMMANDS = {
   status: `🎓 MS Computer Science @ UC Irvine (Dec 2025)
 💼 Trying to understand challenges that happen at scale`,
   interests: "machine-learning/  cloud-infra/  hiking/  books/  minimalism/",
-  "ls -la": `drwxr-xr-x  home/      → you are here
-drwxr-xr-x  about/     → who I am
+  "ls -la": `drwxr-xr-x  home/      → about me
+drwxr-xr-x  fun/       → you are here
 drwxr-xr-x  blog/      → things I write
 drwxr-xr-x  bookshelf/ → what I read`,
   links: { text: "github.com/harshrey", href: "https://github.com/harshrey" },
   email: { text: "hardass@uci.edu", href: "mailto:hardass@uci.edu" },
 };
 
-function Home() {
+function Fun() {
   const [history, setHistory] = useState([
     { type: 'output', text: 'Welcome! Type "help" to see available commands.' }
   ]);
@@ -132,7 +133,7 @@ function Home() {
   };
 
   return (
-    <VStack align="center" spacing={8}>
+    <VStack as="main" aria-label="Fun terminal" align="center" spacing={8}>
       {/* Profile pic */}
       <Box>
         <img
@@ -233,7 +234,7 @@ function Home() {
       </Text>
       
       <Text fontSize="xs" color="gray.400" mt={2}>
-        🧪 I keep experimenting with this homepage as a fun project — it might look different next time you visit!
+        🧪 I keep experimenting with this terminal as a fun project — it might look different next time you visit!
       </Text>
       
       <style>{`
@@ -255,8 +256,7 @@ export default function App() {
   return (
     <Box bg="white" minH="100vh" color="gray.800">
       <Container maxW="lg" pt={12}>
-        <HStack as={ChakraLink} href="#/" aria-label="shreya hardas home" spacing={3} justify="center" mb={2} _hover={{ textDecoration: "none" }}>
-          <Image src="/assets/pine-tree.png" alt="Pine tree" h="50px" w="auto" />
+        <VStack as={ChakraLink} href="#/" aria-label="shreya hardas home" spacing={1} justify="center" mb={2} _hover={{ textDecoration: "none" }}>
           <Heading
             as="h1"
             fontFamily="'DM Serif Display', Georgia, serif"
@@ -270,12 +270,16 @@ export default function App() {
           >
             shreya hardas
           </Heading>
-        </HStack>
+          <Text lang="mr" fontFamily="'Nirmala UI', 'Noto Serif Devanagari', serif" fontSize="md" lineHeight="1.4" color="#7e5145">
+            श्रेया
+          </Text>
+        </VStack>
         <Router>
           <Nav />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<About />} />
             <Route path="/about" element={<About />} />
+            <Route path="/fun" element={<Fun />} />
             <Route path="/blog" element={<Blog />} />
             <Route 
               path="/bookshelf" 
@@ -290,6 +294,7 @@ export default function App() {
             <Route path="/travel" element={<Travel />} />
             <Route path="/travel-gallery" element={<TravelGallery />} />
             <Route path="/pune" element={<Pune />} />
+            <Route path="/music" element={<Pune />} />
           </Routes>
         </Router>
       </Container>

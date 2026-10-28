@@ -16,7 +16,7 @@
 
 .pune-page__heading h2 {
   margin: 8px 0;
-  font: 400 clamp(64px, 8vw, 100px) / 1 Georgia, serif;
+  font: 400 clamp(64px, 8vw, 100px) / 1 var(--title-font);
   letter-spacing: -0.07em;
   color: #6d3e2e;
 }

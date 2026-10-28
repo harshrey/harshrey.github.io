@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { Box, Container, Text, VStack, Heading, HStack, Badge } from "@chakra-ui/react";
 import Globe from 'react-globe.gl';
 
-const GLOBE_TEXTURE = "//unpkg.com/three-globe/example/img/earth-day.jpg";
+const GLOBE_TEXTURE = "https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg";
 const NIGHT_TEXTURE = "//unpkg.com/three-globe/example/img/earth-night.jpg";
 
 // Category icons and colors
@@ -660,7 +660,7 @@ const Travel = () => {
             <HStack justify="space-between" align="start" mb={2}>
               <HStack spacing={2}>
                 <Text fontSize="2xl">{CATEGORIES[selectedTrip.category]?.icon || '📍'}</Text>
-                <Heading as="h3" size="md" fontFamily="serif">
+                <Heading as="h3" size="md" fontWeight="400" fontFamily="var(--title-font)">
                   {selectedTrip.name}
                 </Heading>
               </HStack>
