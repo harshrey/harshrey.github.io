@@ -11,6 +11,7 @@ import './App.css';
 
 const Travel = import.meta.env.DEV ? lazy(() => import('./pages/Travel')) : null;
 const TravelGallery = import.meta.env.DEV ? lazy(() => import('./pages/TravelGallery')) : null;
+const Highway395 = lazy(() => import('./pages/Highway395'));
 
 function Nav() {
   return (
@@ -278,6 +279,10 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/fun" element={<Fun />} />
             <Route path="/blog" element={<Blog />} />
+            <Route
+              path="/blog/highway-395"
+              element={<Suspense fallback={<Text>Loading road-trip notes...</Text>}><Highway395 /></Suspense>}
+            />
             <Route 
               path="/bookshelf" 
               element={
