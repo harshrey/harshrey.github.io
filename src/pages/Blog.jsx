@@ -209,9 +209,6 @@ const Blog = () => {
         <Heading as="h2" size="xl" fontFamily="var(--title-font)" fontWeight="400" color="black">
           <Link to="/blog/highway-395">Highway 395: old earth, fleeting color</Link>
         </Heading>
-        <ChakraLink as={Link} to="/blog/highway-395" fontFamily="Georgia, 'Times New Roman', serif" fontSize="sm" color="#981b20" textDecoration="underline">
-          Read the story &rarr;
-        </ChakraLink>
       </Box>
       <VStack spacing={8} align="start" divider={<Divider borderColor="gray.300" />}>
         {sortedPosts.map(post => (
