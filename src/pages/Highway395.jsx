@@ -530,7 +530,7 @@ export default function Highway395() {
               <p className="roadtrip__field-note">Ghost-town note / Bodie's approach is remote, and road access is weather-dependent. Check State Parks guidance before going.</p>
             </Chapter>
             <Chapter index={15}>
-              <p>Lake Tahoe is North America's largest alpine lake and the second-deepest lake in the United States, reaching 1,645 feet (501 metres). Its blue water and mountain backdrop made a lovely setting for our fall-color loops, before the trip ended in Reno.</p>
+              <p>Lake Tahoe is North America's largest alpine lake and the second-deepest lake in the United States, reaching 1,645 feet (501 metres). Be sure to paddle in its crystal-clear water. Its blue water and mountain backdrop made a lovely setting for our fall-color loops, before the trip ended in Reno.</p>
             </Chapter>
             <footer className="roadtrip__footer">
               <details>
