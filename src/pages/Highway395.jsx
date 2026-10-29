@@ -35,11 +35,13 @@ const YOSEMITE_POINTS = [
 const PLANE_PATH = 'M12 2 14 9 21 13 21 15 14 13 14 19 17 21 17 22 12 20 7 22 7 21 10 19 10 13 3 15 3 13 10 9Z';
 
 const SOURCES = [
+  ['Ontario to Lone Pine driving estimate', 'Travelmath', 'https://www.travelmath.com/driving-time/from/Ontario,+CA/to/Lone+Pine,+CA'],
   ['Owens Lake and water diversion', 'National Academies of Sciences, Engineering, and Medicine', 'https://www.nationalacademies.org/read/25658/chapter/3'],
   ['Eastern Sierra Interagency Visitor Center', 'US Forest Service', 'https://www.fs.usda.gov/r05/inyo/offices/eastern-sierra-interagency-visitor-center'],
   ['Seeing Mount Whitney', 'National Park Service', 'https://www.nps.gov/seki/planyourvisit/whitney.htm'],
   ['Alabama Hills', 'Bureau of Land Management', 'https://www.blm.gov/visit/alabama-hills'],
   ['Big Pine volcanic field', 'US Geological Survey', 'https://www.usgs.gov/publications/late-pleistocene-ages-most-recent-volcanism-and-glacial-pluvial-deposits-big-pine'],
+  ['Lone Pine to Big Pine driving estimate', 'Travelmath', 'https://www.travelmath.com/driving-time/from/Lone+Pine,+CA/to/Big+Pine,+CA'],
   ['Ancient Bristlecone Pine Forest', 'US Forest Service', 'https://www.fs.usda.gov/r05/inyo/recreation/ancient-bristlecone-pine-forest'],
   ['Schulman Grove and Discovery Trail', 'US Forest Service', 'https://www.fs.usda.gov/r05/inyo/recreation/schulman-grove'],
   ['Bristlecone forest visitor center', 'US Forest Service', 'https://www.fs.usda.gov/r05/inyo/offices/ancient-bristlecone-pine-forest-visitor-center'],
@@ -73,7 +75,8 @@ const SOURCES = [
   ['Crowley Lake and its columns', 'Mono County Tourism', 'https://www.monocounty.org/places-to-go/towns/crowley-lake-community/'],
   ['Bishop Tuff columns and hydrothermal cooling', 'Randolph-Flagg and colleagues, Geology (2017)', 'https://doi.org/10.1130/G39256.1'],
   ['Tioga Road, Siesta Lake, Soda Springs, Tenaya Lake and Olmsted Point', 'National Park Service', 'https://www.nps.gov/yose/planyourvisit/tm.htm'],
-  ['Pothole Dome and Tuolumne Meadows hikes', 'National Park Service', 'https://www.nps.gov/yose/planyourvisit/tmhikes.htm'],
+  ['Yosemite lake count and watersheds', 'National Park Service', 'https://www.nps.gov/yose/learn/nature/watersheds.htm'],
+  ['Pothole Dome, Soda Springs, and Tuolumne Meadows hikes', 'National Park Service', 'https://www.nps.gov/yose/planyourvisit/tmhikes.htm'],
   ['Tuolumne Grove', 'National Park Service', 'https://www.nps.gov/places/000/tuolumne-grove.htm'],
   ['Historic Dead Giant tunnel photographs', 'National Park Service', 'https://www.nps.gov/yose/learn/historyculture/encroaching-civilization-visitor-activities.htm'],
   ['Bodie State Historic Park', 'California State Parks', 'https://www.parks.ca.gov/?page_id=509'],
@@ -401,37 +404,37 @@ export default function Highway395() {
           <RouteGuide />
           <div className="roadtrip__story">
             <div className="roadtrip__intro">
-              <p>The trip started in Ontario. This Highway 395 road trip brought together desert-like landscapes, ancient trees, lakes, and fall-color loops. We saw Mount Whitney and an arch in the Alabama Hills, went off-roading in Big Pine, and found a very different kind of stop in Bishop: Erick Schat's Bakkery and its selection of breads. In Mammoth, there was also a crack in the ground about sixty feet deep.</p>
+              <p>On Highway 395, the landscape rarely stayed the same for long. Dry mountains gave way to ancient trees, blue lakes, and pockets of yellow fall color. We kept returning to the same road, then leaving it again for something to the east or west.</p>
               <p>Put together, those stops tell a story about time: rock shaped over ages, trees that measure their lives in millennia, and autumn leaves working on a much shorter calendar.</p>
             </div>
             <Chapter index={0}>
-              <p>As we approached Alabama Hills, the broad Owens Lake basin was on our right. It was a large presence beside the road, but the name alone does not explain the landscape.</p>
+              <p>We started in Ontario and made our way north toward Highway 395. Along the way, the mountains had beautiful shades of red and earthy brown. If the colors were already this beautiful here, I could only imagine how spectacular Death Valley must be. Near Lone Pine, roughly three and a half hours' driving north of Ontario, the broad Owens Lake basin came into view on our right.</p>
               <p>Beginning in 1913, water from the Owens River was diverted into the Los Angeles Aqueduct to supply the city. That river had been the lake's main inflow. The diversion dried out large parts of the lakebed and left a much smaller area of shallow, highly saline water.</p>
               <p>The exposed bed became a major source of windblown dust. Dust-control work has used shallow flooding, managed vegetation, and gravel to keep that material from becoming airborne. The basin is not simply an untouched desert scene: its water, exposed ground, and management are tied to the demands of a distant city.</p>
             </Chapter>
             <Chapter index={1}>
-              <p>The Eastern Sierra Interagency Visitor Center had some amazing exhibits. Its interpretive displays give the landscape outside another layer of context, rather than treating each mountain, lake, and stretch of desert as an isolated sight.</p>
+              <p>Continuing north toward Lone Pine, we reached the Eastern Sierra Interagency Visitor Center. It had some amazing exhibits, and after looking at the mountains from the car, it was lovely to learn more about the landscape we were passing through.</p>
               <p>It sits just south of Lone Pine, at the junction of Highway 395 and State Route 136. From here, 136 heads east and connects with 190 toward Death Valley. The road trip could branch into a very different landscape at this junction.</p>
               <p className="roadtrip__field-note">Road note / Death Valley is a route connection here, not an additional recorded stop on this trip. Check current road conditions before planning that drive.</p>
             </Chapter>
             <Chapter index={2}>
-              <p>We also saw Mount Whitney. There is an important word in its superlative: it is the highest peak in the <em>contiguous</em> United States, not the highest across all fifty states.</p>
-              <p>The National Park Service gives its summit elevation as 14,505 feet. Seeing the peak belongs in these trip notes as a view of the Sierra skyline, not as a claim that we climbed it. Around Lone Pine, a road trip can put a very large mountain into the story without becoming a mountaineering trip.</p>
+              <p>Around Lone Pine, we looked west toward the Sierra and saw Mount Whitney, the highest peak in the <em>contiguous</em> United States. After the colors of the lower mountains, this was a very different reason to look up.</p>
+              <p>The National Park Service gives its summit elevation as 14,505 feet. We were seeing it from below, not climbing it, but it gave this stretch of the journey a sense of scale: the valley around us, and that enormous mountain above.</p>
               <p className="roadtrip__field-note">Mountain note / Whitney holds the lower-48 record; Denali in Alaska is higher.</p>
             </Chapter>
             <Chapter index={3}>
-              <p>The Alabama Hills are a jumble of enormous, rounded boulders. Some are piled together; others sit apart on sandy ground, with low desert scrub in the gaps. Behind those soft, weathered shapes, the Sierra rises in a jagged wall.</p>
+              <p>West of Lone Pine, we found a very different foreground to that Sierra skyline: the Alabama Hills, a jumble of enormous, rounded boulders. Some are piled together; others sit apart on sandy ground, with low desert scrub in the gaps. Behind those soft, weathered shapes, the Sierra rises in a jagged wall.</p>
               <p>No buildings or trail signs: just rocks, scrub, and open sky. Our car almost felt like the only human-made thing in sight.</p>
               <p>We saw a natural arch among those rocks, a curve of stone framing the landscape beyond. It is the small shapes as much as the scale that make this place worth looking at: cracks across a boulder, a narrow gap between two rocks, a hollow worn into the stone. What looks bare from a distance has plenty going on up close.</p>
               <p className="roadtrip__field-note">Landscape note / rounded hills and natural arches below the Sierra, near Lone Pine. The particular arch is not named in these notes.</p>
             </Chapter>
             <Chapter index={4}>
-              <p>At Big Pine, we went off-roading to see volcanic cones. This was a change from the highway itself: a way of seeing the volcanic landscape beyond the main road.</p>
+              <p>Back on Highway 395, we headed north from Lone Pine to Big Pine, about 45 minutes farther along the highway. Here, we went off-roading to see volcanic cones. After the rounded boulders of Alabama Hills, here was another rocky landscape with a completely different beginning.</p>
               <p>USGS research describes basaltic lava flows and multiple eruption vents in the Big Pine volcanic field. The cones and lava belong to the Owens Valley's volcanic history, adding another way for rock to take shape alongside the eroded hills and granite farther along the trip.</p>
               <p className="roadtrip__field-note">Volcanic note / off-roading near Big Pine; no specific cone or trail is assumed.</p>
             </Chapter>
             <Chapter index={5}>
-              <p>High in the White Mountains, the bristlecone pine forest is an open landscape of pale rock and twisted wood. There is space between the trees, and so much of each trunk can look bare and weathered that a small patch of green needles comes as a surprise. These are not trees that announce their age by being enormous.</p>
+              <p>From Big Pine, we turned east and climbed into the White Mountains, leaving the valley behind for the bristlecone pine forest. Schulman Grove is about 45 minutes up those winding mountain roads. Up here, pale rock and twisted wood replaced the volcanic landscape below. There is space between the trees, and so much of each trunk can look bare and weathered that a small patch of green needles comes as a surprise. These are not trees that announce their age by being enormous.</p>
               <h4>The pale rock beneath the trees</h4>
               <p>Limestone is close, but much of the pale rock associated with these groves is dolomite, also called dolostone. It is a calcium-magnesium carbonate rock, related to limestone and often formed when magnesium-rich water altered older limestone. Its history begins with ancient carbonate sediments, long before this was a high mountain landscape.</p>
               <p>The carbonate minerals account for the pale whites and grays. Small amounts of other minerals change the palette: iron can give dolomite yellow-brown tones, and oxidation during weathering can leave rusty stains. The color is part of the rock's chemistry, not simply dust sitting on its surface.</p>
@@ -448,28 +451,28 @@ export default function Highway395() {
               <p>This is the short Discovery loop, not the separate 4.5-mile Methuselah Trail. Bring water and layers, and check seasonal access before heading up.</p>
             </Chapter>
             <Chapter index={6}>
-              <p>After so much open country, Bishop felt like a substantial town: a busy Main Street, businesses, and neighborhoods, not just a stop beside the highway. It is a regional hub in the northern Owens Valley, and that concentration of everyday life feels surprising against the dry country around it.</p>
+              <p>Coming back down from the White Mountains, we rejoined Highway 395 and continued north to Bishop. After so much open country, it felt like a substantial town: a busy Main Street, businesses, and neighborhoods, not just a stop beside the highway. That concentration of everyday life felt surprising against the dry country around it.</p>
               <p>Water helps explain the contrast. Bishop Creek carries water down from the Sierra, while the city's drinking water is pumped from groundwater wells. The mountains and the water beneath the valley make it possible for a town to thrive in a landscape that can look so dry from the road.</p>
               <p>One interesting find was Erick Schat's Bakkery. Its predecessor bakery was founded by the Schoch family in 1903; the Dutch Schat family later took over and carried on the Basque sheepherder-bread tradition. There is a longer history behind those shelves than a quick bakery stop might suggest.</p>
               <p>The choice of breads is part of the attraction: Original Sheepherder Bread, sourdough, rye, olive, French, and seven-grain, among others. After all the open space outside, here was a different sort of abundance.</p>
             </Chapter>
             <Chapter index={7}>
-              <p>West of Bishop, Buttermilk Country brought another version of fall: beautiful yellow color set against dry mountains. It did not need a dense forest around it. Small patches of yellow could stand out all the more against that spare, earthy background.</p>
-              <p>This belongs with the Lake Sabrina side trip, away from the northbound highway and toward the Sierra. The landscape changes before the lake itself comes into view.</p>
+              <p>From Bishop, we turned west toward the Sierra. Buttermilk Country brought another version of fall: beautiful yellow color set against dry mountains. It did not need a dense forest around it. Small patches of yellow could stand out all the more against that spare, earthy background.</p>
+              <p>We were away from the northbound highway again, this time heading toward the Bishop Creek lakes. The colors began well before the water came into view.</p>
             </Chapter>
             <Chapter index={8}>
-              <p>At Lake Sabrina, there was beautiful yellow fall color around the water. After the dry mountains and Buttermilk Country, the lake gathered those colors into a different setting: mountain slopes, water, and bright leaves along the edge.</p>
+              <p>Continuing southwest into Bishop Creek Canyon brought us to Lake Sabrina, with beautiful yellow fall color around the water. After the dry mountains and Buttermilk Country, the lake gathered those colors into a different setting: mountain slopes, water, and bright leaves along the edge.</p>
               <p>Lake Sabrina lies up Bishop Creek Canyon, west of Bishop on Highway 168. The Bishop area's fall-color landscapes include aspens, willows, and cottonwoods, although a yellow leaf alone is not enough to name the tree in a particular memory.</p>
               <AutumnStudy />
             </Chapter>
             <Chapter index={9}>
-              <p>Crowley Lake brings broad, open water into the Long Valley landscape. It is known for fishing and boating, but there is also a geological reason to look more closely at its shore.</p>
+              <p>Back down in Bishop, we rejoined Highway 395 and continued north to Crowley Lake. After Sabrina's mountain setting, this was broad, open water in the Long Valley landscape. It is known for fishing and boating, but there is also a geological reason to look more closely at its shore.</p>
               <p>Along the northeastern shore are pale stone columns in volcanic tuff, a rock made from volcanic ash. A study published in <em>Geology</em> links the columns to water circulating through the cooling deposit. Mineral cement made the columns more resistant; erosion could then remove the softer material around them.</p>
               <p>They are not the same kind of formation as Mono Lake's tufa towers farther north. Similar-looking pale stone can have very different beginnings: cooling volcanic ash here, spring-water chemistry there.</p>
               <p className="roadtrip__field-note">Lake note / the columns are context for what is at Crowley, not a claim that we reached that shoreline. Access depends on water levels and conditions.</p>
             </Chapter>
             <Chapter index={10}>
-              <p>Mammoth Lakes deserves the plural. Above town, the Lakes Basin gathers Twin Lakes, Lake Mary, Lake Mamie, Lake George, and Horseshoe Lake into a landscape of forest, water, and steep mountain slopes. They are separate lakes with different settings, not several names for the same stretch of water.</p>
+              <p>Farther north on Highway 395, we turned west again, this time toward Mammoth Lakes. Above town, the Lakes Basin gathers Twin Lakes, Lake Mary, Lake Mamie, Lake George, and Horseshoe Lake into a landscape of forest, water, and steep mountain slopes.</p>
               <p>Twin Lakes sits lower in the basin; farther up are the broader water of Lake Mary, smaller Lake Mamie, and Lake George below the rocky slopes. Horseshoe Lake lies near the end of Lake Mary Road. Together they make this a lake-country branch of the trip, not just the location of the fissure.</p>
               <h4>Why are the trees dead beside Horseshoe Lake?</h4>
               <p>A stand of dead trees beside a mountain lake might make you think of fire or drought. Here, the explanation is something you cannot see: volcanic carbon dioxide rising from beneath Mammoth Mountain.</p>
@@ -482,16 +485,16 @@ export default function Highway395() {
               <p>A crack in the ground sounds like a small detail. Sixty feet changes the scale of that sentence.</p>
             </Chapter>
             <Chapter index={11}>
-              <p>June Lake Loop adds a different shape to the route: not a single stop, but a road that gathers several lakes into one small circuit.</p>
+              <p>After Mammoth, we returned to Highway 395 and continued north toward the June Lake Loop. Here the journey bent west among the lakes, a change from simply following the highway north.</p>
               <p>Highway 158 passes June, Gull, Silver, and Grant lakes. In autumn, the loop's aspens add another layer to the mountain-and-water landscape.</p>
-              <p>Fall color was part of my road trip too. Here the story changes scale again: from the long lives of bristlecones to leaves that belong to a single season.</p>
+              <p>After the loop, it was back to Highway 395, heading north toward Lee Vining.</p>
               <p className="roadtrip__field-note">Loop tip / To start from the north, leave Highway 395 at the northern Highway 158 junction near Grant Lake. Follow the loop past Grant, Silver, Gull, and June lakes, then rejoin 395 at the southern junction. The northern stretch closes seasonally for snow, so check road conditions before choosing this approach.</p>
             </Chapter>
             <div className="roadtrip__pause">
               <p>Some landscapes keep time in stone.<br />Others, in a season.</p>
             </div>
             <Chapter index={12}>
-              <p>The Mono Basin Scenic Area Visitor Center, just north of Lee Vining, offers a magnificent view over Mono Lake. The Mono Basin is the surrounding watershed: Sierra snowmelt drains toward this salt lake, which has no outlet to the ocean.</p>
+              <p>Continuing north brought us to Lee Vining and the Mono Basin. The Mono Basin Scenic Area Visitor Center, just north of Lee Vining, offers a magnificent view over Mono Lake. The Mono Basin is the surrounding watershed: Sierra snowmelt drains toward this salt lake, which has no outlet to the ocean.</p>
               <p>There is volcanic history in that view too. Black Point, now on the northwestern shore, formed in an underwater eruption about 13,300 years ago, near the end of the last Ice Age, when the lake was much higher. The islands within the lake, Negit and Paoha, also have volcanic origins, but are much younger.</p>
               <p>The calcium deposits I saw at Mono Lake have a name: tufa. They are calcium-carbonate limestone formations, with a much more interesting origin than water simply drying up and leaving rock behind.</p>
               <p>The towers grow underwater, where calcium-rich freshwater springs meet the lake's carbonate-rich water. The chemical reaction deposits limestone around the springs. Lower lake levels expose the towers; they do not create them.</p>
@@ -505,37 +508,41 @@ export default function Highway395() {
               <p>The alkali flies have an especially lovely trick. Tiny hairs trap a bubble of air around their bodies, letting the adults walk underwater to feed and lay eggs.</p>
             </Chapter>
             <Chapter index={13}>
-              <p>Yosemite was a spectacular westward branch off Highway 395. Tioga Pass and Tioga Road deserve to be part of the destination, not just the directions for getting there.</p>
+              <p>Near Lee Vining, we left Highway 395 and turned west onto Highway 120 toward Tioga Pass. The drive into Yosemite was spectacular; Tioga Road felt like part of the destination, not just a way to get there.</p>
               <h4>Tioga Pass &amp; Tuolumne Meadows</h4>
               <p>From the eastern side, Highway 120 climbs toward Tioga Pass and continues into Yosemite. The park's 47-mile stretch of Tioga Road runs between the pass and Crane Flat, through a landscape of granite, lakes, forest, and open meadows.</p>
-              <p>Tuolumne Meadows opens up around the winding Tuolumne River. Nearby Soda Springs adds a much smaller water feature: naturally carbonated, cold water bubbling out of the ground. The river and the springs are different things, both part of this high-country landscape.</p>
+              <p>Beyond the pass, Tuolumne Meadows opens up around the winding Tuolumne River, with grassland, granite domes, and peaks giving the drive a different setting.</p>
+              <h4>Soda Springs</h4>
+              <p>Nearby Soda Springs brings the scale right down: cold, naturally carbonated water bubbling straight out of the ground. A historic log enclosure protects the main spring, while more water seeps up in the meadow outside. The bubbles can look like a tiny simmer, but this is not a hot spring.</p>
+              <p>Iron gives the surrounding mud a rusty hue. After the broad meadow and big granite views, this little spring is a reason to slow down and look closely at something as small as bubbles rising through water.</p>
               <h4>Pothole Dome</h4>
-              <p>We hiked Pothole Dome, at the western end of Tuolumne Meadows. A granite dome changes the way the meadow reads: the open country can be seen as a whole, with the surrounding peaks giving it a frame.</p>
+              <p>We hiked Pothole Dome at the western end of Tuolumne Meadows. From the granite, the open country could be seen as a whole, with the surrounding peaks giving it a frame.</p>
               <h4>Tenaya Lake &amp; Olmsted Point</h4>
-              <p>Continuing west along the road brings Tenaya Lake, held among granite domes and peaks. Olmsted Point offers a different angle on that same granite country, with views toward Half Dome, Clouds Rest, and Tenaya Lake.</p>
+              <p>Continuing west along the road brought us to Tenaya Lake, held among granite domes and peaks. It is the largest lake in Yosemite's frontcountry. Across the park, there are about 3,200 lakes larger than 100 square metres; most lie in the wilderness and require a hike to reach.</p>
+              <p>Farther west, Olmsted Point offered a different angle on that same granite country, with views toward Half Dome, Clouds Rest, and Tenaya Lake.</p>
               <p>The boulders scattered across the rock at Olmsted Point include glacial erratics, carried and left behind by ice. Yosemite's granite is not just a collection of dramatic shapes; it also preserves clues to how those shapes were worn and rearranged.</p>
               <h4>Siesta Lake</h4>
-              <p>Siesta Lake had pretty yellow fall plants and bushes around the water. It was a smaller detail than the big granite views, but it belongs just as much in the memory of the road: a lake with a yellow fringe.</p>
+              <p>Farther west along Tioga Road, Siesta Lake had pretty yellow fall plants and bushes around the water. It was a smaller detail than the big granite views, but it belongs just as much in the memory of the road: a lake with a yellow fringe.</p>
               <p>The lake sits beside Tioga Road, farther west toward Crane Flat. Here, too, autumn brought its short-lived color into a landscape shaped over much longer stretches of time.</p>
               <h4>Tuolumne Grove &amp; the Dead Giant Tunnel Tree</h4>
-              <p>The Dead Giant Tunnel Tree belongs to Tuolumne Grove, near the western end of this branch. A tunnel cut through an already-dead giant sequoia turned the enormous trunk into a passage, a very different kind of opening from the natural arch in Alabama Hills.</p>
+              <p>Near Crane Flat, at the western end of this detour, we came to Tuolumne Grove and the Dead Giant Tunnel Tree. A tunnel cut through an already-dead giant sequoia turned the enormous trunk into a passage, a very different kind of opening from the natural arch in Alabama Hills.</p>
               <p>The grove also has living giant sequoias. The old Big Oak Flat Road into it is now closed to vehicles; this is a place reached on foot, not a drive-through tree stop.</p>
               <p className="roadtrip__field-note">High-country note / Tioga Road is seasonal. The close-up map follows the locations east to west, not a recorded driving track.</p>
             </Chapter>
             <Chapter index={14}>
-              <p>Bodie State Historic Park was a deeper detour into the hills, away from the highway. State Route 270 branches east from Highway 395 toward the town. Its isolation is part of the ghost town's presence: a mining town standing apart from the main road, rather than another settlement strung along it.</p>
+              <p>Back on Highway 395 after the Yosemite detour, we continued north before turning east on State Route 270 toward Bodie State Historic Park. This was a deeper detour into the hills, away from the highway. The isolation is part of the ghost town's presence: a mining town standing apart from the main road, rather than another settlement strung along it.</p>
               <p>The reason for a town here was gold. A discovery in 1859 began the story, and rich ore finds in the 1870s brought the boom. Mines drew people, and the businesses of a town followed: houses, shops, hotels, saloons, and a school.</p>
               <p>Bodie's violent reputation has a historical basis. The National Park Service describes shootings, stabbings, and brawls associated with its boomtown nightlife and gambling. But violence was not the whole town: families, workers, and a Chinese community also made lives here. It was a place people lived, not simply a set for a Western.</p>
               <p>As mining declined, the town emptied. California State Parks now preserves what remains in a state of &ldquo;arrested decay&rdquo;: keeping the old buildings from disappearing without rebuilding them into a polished version of the past.</p>
               <p className="roadtrip__field-note">Ghost-town note / Bodie's approach is remote, and road access is weather-dependent. Check State Parks guidance before going.</p>
             </Chapter>
             <Chapter index={15}>
-              <p>Lake Tahoe is North America's largest alpine lake and the second-deepest lake in the United States, reaching 1,645 feet (501 metres). Be sure to paddle in its crystal-clear water. Its blue water and mountain backdrop made a lovely setting for our fall-color loops, before the trip ended in Reno.</p>
+              <p>Returning west from Bodie to Highway 395, we carried on north before turning west toward Lake Tahoe, North America's largest alpine lake and the second-deepest lake in the United States at 1,645 feet (501 metres). Be sure to paddle in its crystal-clear water. After our fall-color loops, we headed northeast and the trip ended in Reno.</p>
             </Chapter>
             <footer className="roadtrip__footer">
               <details>
                 <summary>Sources &amp; design notes</summary>
-                <p>The places and observations come from my trip notes. Geological context comes from the sources below; it does not add unrecorded hikes, viewpoints, dates, or experiences.</p>
+                <p>The places and observations come from my trip notes. Geological context comes from the sources below; it does not add unrecorded hikes, viewpoints, dates, or experiences. Driving times are approximate estimates, excluding stops and delays.</p>
                 <ul>
                   {SOURCES.map(([name, publisher, url]) => (
                     <li key={url}><a href={url} target="_blank" rel="noopener noreferrer">{name}</a> <span>/ {publisher}</span></li>
