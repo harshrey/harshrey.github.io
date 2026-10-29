@@ -456,6 +456,7 @@ export default function Pune() {
       <footer className="pune-page__credits">
         <div>
           <h3>Credits</h3>
+          <p>Made with a little AP Physics and some JavaScript.</p>
           <p>Curtain physics: Verlet particles with loose distance constraints, following the shared letter-curtain example.</p>
           <p>Hanging-string reference: <a href="https://codepen.io/shubniggurath/pen/ZYpjorm" target="_blank" rel="noopener noreferrer">Liam Egan's CodePen</a>. No external CodePen scripts are loaded.</p>
           <p>
