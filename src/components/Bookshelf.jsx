@@ -9,9 +9,10 @@ const defaultBooks = [
     title: "And the Mountains Echoed",
     shelf: "past",
     author: "Khaled Hosseini",
-    cover: "/assets/books/mountains.svg",
-    coverWidth: 180,
-    coverHeight: 270,
+    cover: "/assets/books/mountains.webp",
+    coverWidth: 288,
+    coverHeight: 450,
+    coverSource: "https://images.penguinrandomhouse.com/cover/9781594632389",
     pageCount: 448,
     edition: "Riverhead Books paperback",
     isbn: "9781594632389",
@@ -22,9 +23,10 @@ const defaultBooks = [
     title: "The Kite Runner",
     shelf: "past",
     author: "Khaled Hosseini",
-    cover: "/assets/books/kite.svg",
-    coverWidth: 180,
-    coverHeight: 256,
+    cover: "/assets/books/kite.webp",
+    coverWidth: 288,
+    coverHeight: 450,
+    coverSource: "https://images.penguinrandomhouse.com/cover/9781594631931",
     pageCount: 400,
     edition: "Riverhead Books paperback",
     isbn: "9781594631931",
@@ -35,9 +37,10 @@ const defaultBooks = [
     title: "The Stationery Shop of Tehran",
     shelf: "past",
     author: "Marjan Kamali",
-    cover: "/assets/books/tehran.svg",
-    coverWidth: 180,
-    coverHeight: 270,
+    cover: "/assets/books/tehran.webp",
+    coverWidth: 589,
+    coverHeight: 900,
+    coverSource: "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781471189180/the-stationery-shop-of-tehran-9781471189180_hr.jpg",
     pageCount: 308,
     edition: "Simon & Schuster UK paperback",
     isbn: "9781471189180",
@@ -47,9 +50,9 @@ const defaultBooks = [
     title: "HBR's 10 Must Reads on Emotional Intelligence",
     shelf: "2026",
     author: "Harvard Business Review",
-    cover: "/assets/books/emotional-intelligence.svg",
-    coverWidth: 180,
-    coverHeight: 266,
+    cover: "/assets/books/emotional-intelligence.webp",
+    coverWidth: 373,
+    coverHeight: 573,
     pageCount: 166,
     edition: "Harvard Business Review Press paperback",
     isbn: "9781633690196",
@@ -71,9 +74,10 @@ const defaultBooks = [
     title: "The Lion Women of Tehran",
     author: "Marjan Kamali",
     shelf: "2026",
-    cover: "/assets/books/lion-women.svg",
-    coverWidth: 360,
-    coverHeight: 540,
+    cover: "/assets/books/lion-women.webp",
+    coverWidth: 589,
+    coverHeight: 900,
+    coverSource: "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781398534759/the-lion-women-of-tehran-9781398534759_hr.jpg",
     pageCount: 336,
     edition: "Simon & Schuster UK paperback",
     isbn: "9781398534759",
@@ -83,9 +87,10 @@ const defaultBooks = [
     title: "How to Talk to Anyone",
     author: "Leil Lowndes",
     shelf: "2026",
-    cover: "/assets/books/talk-to-anyone.svg",
-    coverWidth: 360,
-    coverHeight: 540,
+    cover: "/assets/books/talk-to-anyone.webp",
+    coverWidth: 317,
+    coverHeight: 475,
+    coverSource: "https://covers.openlibrary.org/b/isbn/9780071418584-L.jpg?default=false",
     pageCount: 368,
     edition: "McGraw Hill paperback",
     isbn: "9780071418584",
@@ -95,9 +100,10 @@ const defaultBooks = [
     title: "The Mountain Is You",
     author: "Brianna Wiest",
     shelf: "2026",
-    cover: "/assets/books/mountain-is-you.svg",
-    coverWidth: 360,
-    coverHeight: 540,
+    cover: "/assets/books/mountain-is-you.webp",
+    coverWidth: 314,
+    coverHeight: 500,
+    coverSource: "https://covers.openlibrary.org/b/isbn/9781949759228-L.jpg?default=false",
     pageCount: 248,
     edition: "Thought Catalog Books paperback",
     isbn: "9781949759228",
@@ -107,9 +113,10 @@ const defaultBooks = [
     title: "When Breath Becomes Air",
     author: "Paul Kalanithi",
     shelf: "2026",
-    cover: "/assets/books/when-breath.svg",
-    coverWidth: 360,
-    coverHeight: 540,
+    cover: "/assets/books/when-breath.webp",
+    coverWidth: 305,
+    coverHeight: 450,
+    coverSource: "https://images.penguinrandomhouse.com/cover/9780812988406",
     pageCount: 256,
     edition: "Random House hardcover",
     isbn: "9780812988406",
@@ -119,9 +126,10 @@ const defaultBooks = [
     title: "The Psychology of Money",
     author: "Morgan Housel",
     shelf: "2026",
-    cover: "/assets/books/psychology-money.svg",
-    coverWidth: 360,
-    coverHeight: 540,
+    cover: "/assets/books/psychology-money.webp",
+    coverWidth: 307,
+    coverHeight: 500,
+    coverSource: "https://covers.openlibrary.org/b/isbn/9780857197689-L.jpg?default=false",
     pageCount: 256,
     edition: "Harriman House paperback",
     isbn: "9780857197689",
@@ -236,6 +244,14 @@ const Bookshelf = ({ books: collection = defaultBooks }) => {
                           Edition source
                         </a>
                         {' / ISBN '}{selectedBook.isbn}
+                        {selectedBook.coverSource && (
+                          <>
+                            {' / '}
+                            <a href={selectedBook.coverSource} target="_blank" rel="noopener noreferrer">
+                              Cover source
+                            </a>
+                          </>
+                        )}
                       </>
                     )}
                   </p>
@@ -316,7 +332,7 @@ const Bookshelf = ({ books: collection = defaultBooks }) => {
             <a href="https://github.com/mawise/bookshelf" target="_blank" rel="noopener noreferrer">
               mawise/bookshelf
             </a>
-            {' '}(MIT). Some covers are illustrative. Thickness follows page counts
+            {' '}(MIT). Cover artwork belongs to the respective publishers. Thickness follows page counts
             for the linked reference editions; your copy may differ.
           </p>
       </footer>
