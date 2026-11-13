@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Box, Container, Heading, Text, VStack, UnorderedList, ListItem, Divider, Collapse, HStack, Icon, Link as ChakraLink } from "@chakra-ui/react";
+import { Box, Container, Heading, Text, VStack, UnorderedList, ListItem, Divider, Collapse, HStack, Icon, Image, Link as ChakraLink } from "@chakra-ui/react";
 
 // ============================================
 // BLOG POSTS - Add new posts here!
@@ -11,6 +11,102 @@ import { Box, Container, Heading, Text, VStack, UnorderedList, ListItem, Divider
 //   - { type: 'list', items: ['item 1', 'item 2', 'item 3'] }
 
 const BLOG_POSTS = [
+  {
+    id: 5,
+    title: "This, Too, Is Home",
+    date: "November 13, 2026",
+    content: [
+      {
+        type: 'text',
+        value: "It is a rainy November afternoon, and I am drinking coffee from a mug that is far too big for a normal serving. My dad gave it to me. If you know him, you know his collection of enormous mugs and how much he enjoys his chaha. Every time I use this one, I think of him."
+      },
+      {
+        type: 'text',
+        value: "Outside the window, the branches are bare, their fall leaves already on the ground. Behind them, pine trees cover the hills. A classic Washington scene. I have grown used to this view, though sometimes I still catch myself noticing how different it is from where I grew up."
+      },
+      {
+        type: 'text',
+        value: "As I lift my mug, I notice the mehendi on my hands. We had a Diwali celebration at the office yesterday, and today I have carried a little of it home with me."
+      },
+      {
+        type: 'image',
+        src: "/assets/blog/this-too-is-home.png",
+        alt: "A hand with mehendi holding a coffee mug by a window overlooking bare branches and distant evergreen trees."
+      },
+      {
+        type: 'text',
+        value: "There was something comforting about celebrating at work. Being Indian in a space where I spend so much of my everyday life, moving between festivities and familiar work challenges. The office has become a place where I feel at ease, too. I like going in, seeing people, and having something to figure out."
+      },
+      {
+        type: 'text',
+        value: "Yesterday was our second Diwali celebration of the week. I am still recovering from the first."
+      },
+      {
+        type: 'text',
+        value: "Last Sunday, we had all our friends over for a potluck. Everyone brought food that reminded them of home. For an evening, dishes from different households ended up on the same table, each familiar to someone."
+      },
+      {
+        type: 'text',
+        value: "We served food on coconut leaves and did Lakshmi poojan, trying to follow the customs we had grown up watching. Only this time, we were responsible for making it happen. I had watched my parents do this for years; now, in my own home, I was trying to remember the order of things."
+      },
+      {
+        type: 'text',
+        value: "But we did it. We gathered, ate, and lit phuljhadis, reaching for a little of the excitement we remembered from childhood."
+      },
+      {
+        type: 'text',
+        value: "Looking back at Sunday from this quiet afternoon, I wonder what we were making. Were we trying to recreate Diwali back home? Were we making our own version? At what point does something stop being an imitation of your parents' traditions and become a tradition of your own?"
+      },
+      {
+        type: 'text',
+        value: "We were probably too busy serving food to think about any of this then."
+      },
+      {
+        type: 'text',
+        value: "I take another sip of coffee."
+      },
+      {
+        type: 'text',
+        value: "I keep chasing something or the other. There is always work to do, a plan to make, another part of life to figure out. Yet so many of the things that make me happiest are these familiar moments I don't have to work very hard to recognise."
+      },
+      {
+        type: 'text',
+        value: "A conversation with my roommate that somehow carries on until 2 a.m. My undergrad best friend living in the next town. A call to my parents, with the usual chaos and some funny little argument happening in the background. I can be sitting here, thousands of miles away, and know exactly what that room feels like."
+      },
+      {
+        type: 'text',
+        value: "Home seems to have spread out while I wasn't paying attention."
+      },
+      {
+        type: 'text',
+        value: "And still, there are conversations that make me feel suddenly unfamiliar with my own stage of life. Friends talk about being married, and I listen, interested but unable to quite picture myself in their stories. Relatives and family friends ask about what comes next, and I find myself wanting to retreat into what I already know."
+      },
+      {
+        type: 'text',
+        value: "I wonder whether I am uncomfortable with those possibilities, or simply with the expectation that I should be moving towards them."
+      },
+      {
+        type: 'text',
+        value: "I have made a life here that I like. There are people I love nearby, people I love on the other end of the phone, and friends who will bring a dish from their childhood into my home on a Sunday evening. Perhaps I am protective of all this because it took time to become familiar."
+      },
+      {
+        type: 'text',
+        value: "I hope that doesn't make me stop exploring. I want to be open to things I cannot picture yet, without feeling that I must hurry towards them."
+      },
+      {
+        type: 'text',
+        value: "For now, I turn back to the window. The bare branches, the rain, the pine trees on the hills. My hands around my dad's mug, yesterday's mehendi still dark against my skin."
+      },
+      {
+        type: 'text',
+        value: "This is not the scene I would once have imagined when someone said \"home.\""
+      },
+      {
+        type: 'text',
+        value: "But it is home now."
+      }
+    ]
+  },
   {
     id: 4,
     title: "Some things I believe",
@@ -171,6 +267,11 @@ const BlogPost = ({ post }) => {
       <Collapse in={isOpen} animateOpacity>
         <Box pt={4}>
           {post.content.map((block, index) => {
+            if (block.type === 'image') {
+              return (
+                <Image key={index} src={block.src} alt={block.alt} loading="lazy" maxW="100%" h="auto" borderRadius="md" mb={6} />
+              );
+            }
             if (block.type === 'text') {
               return (
                 <Text key={index} fontSize="md" lineHeight="1.8" mb={4}>
