@@ -99,11 +99,11 @@ const BLOG_POSTS = [
       },
       {
         type: 'text',
-        value: "This is not the scene I would once have imagined when someone said \"home.\""
+        value: "Home is the friends around you. It is the routine you have grown to love, the food that comforts you, the small, familiar things that make an ordinary day feel like your own."
       },
       {
         type: 'text',
-        value: "But it is home now."
+        value: "I think home is in the mind, too. In what we learn to love and what we choose to carry with us. And maybe that means we can make a home wherever we go."
       }
     ]
   },
