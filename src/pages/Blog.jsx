@@ -108,9 +108,15 @@ const BLOG_POSTS = [
     ]
   },
   {
+    id: 6,
+    title: "Highway 395: old earth, fleeting color",
+    date: "October 29, 2026",
+    href: "/blog/highway-395"
+  },
+  {
     id: 4,
     title: "Some things I believe",
-    date: "October 28, 2026",
+    date: "April 2026",
     content: [
       {
         type: 'list',
@@ -243,6 +249,19 @@ const BLOG_POSTS = [
 // ============================================
 const BlogPost = ({ post }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  if (post.href) {
+    return (
+      <Box as="article" aria-label="Highway 395 road trip" w="100%">
+        <Text fontFamily="Georgia, 'Times New Roman', serif" fontSize="xs" color="gray.500" mb={3}>
+          {post.date}
+        </Text>
+        <Heading as="h2" size="xl" fontFamily="var(--title-font)" fontWeight="400" color="black">
+          <Link to={post.href}>{post.title}</Link>
+        </Heading>
+      </Box>
+    );
+  }
   
   return (
     <Box as="article" w="100%">
@@ -303,14 +322,6 @@ const Blog = () => {
 
   return (
     <Container maxW="2xl" py={8}>
-      <Box as="article" aria-label="Highway 395 road trip" mb={8} pb={8} borderBottom="1px solid" borderColor="gray.300">
-        <Text fontFamily="Georgia, 'Times New Roman', serif" fontSize="xs" color="gray.500" mb={3}>
-          October 29, 2026
-        </Text>
-        <Heading as="h2" size="xl" fontFamily="var(--title-font)" fontWeight="400" color="black">
-          <Link to="/blog/highway-395">Highway 395: old earth, fleeting color</Link>
-        </Heading>
-      </Box>
       <VStack spacing={8} align="start" divider={<Divider borderColor="gray.300" />}>
         {sortedPosts.map(post => (
           <BlogPost key={post.id} post={post} />
