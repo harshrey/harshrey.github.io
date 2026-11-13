@@ -115,6 +115,16 @@
   text-align: right;
 }
 
+.roadtrip__photo {
+  margin: 28px 0;
+}
+
+.roadtrip__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .roadtrip__orientation {
   padding: 20px 0;
   border-top: 0;

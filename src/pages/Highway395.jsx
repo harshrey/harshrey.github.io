@@ -407,6 +407,10 @@ export default function Highway395() {
               <p>On Highway 395, the landscape rarely stayed the same for long. Dry mountains gave way to ancient trees, blue lakes, and pockets of yellow fall color. We kept returning to the same road, then leaving it again for something to the east or west.</p>
               <p>Put together, those stops tell a story about time: rock shaped over ages, trees that measure their lives in millennia, and autumn leaves working on a much shorter calendar.</p>
             </div>
+            <figure className="roadtrip__photo">
+              <img src="/assets/blog/highway-395/en-route.png" alt="Golden fall foliage and evergreen trees below a mountain, with clouds crossing a blue sky." width="1024" height="768" loading="lazy" />
+              <figcaption>Somewhere along the way.</figcaption>
+            </figure>
             <Chapter index={0}>
               <p>We started in Ontario and made our way north toward Highway 395. Along the way, the mountains had beautiful shades of red and earthy brown. If the colors were already this beautiful here, I could only imagine how spectacular Death Valley must be. Near Lone Pine, roughly three and a half hours' driving north of Ontario, the broad Owens Lake basin came into view on our right.</p>
               <p>Beginning in 1913, water from the Owens River was diverted into the Los Angeles Aqueduct to supply the city. That river had been the lake's main inflow. The diversion dried out large parts of the lakebed and left a much smaller area of shallow, highly saline water.</p>
@@ -509,6 +513,10 @@ export default function Highway395() {
             </Chapter>
             <Chapter index={13}>
               <p>Near Lee Vining, we left Highway 395 and turned west onto Highway 120 toward Tioga Pass. The drive into Yosemite was spectacular; Tioga Road felt like part of the destination, not just a way to get there.</p>
+              <figure className="roadtrip__photo">
+                <img src="/assets/blog/highway-395/yosemite.png" alt="A towering granite cliff above evergreen trees in Yosemite, beneath a blue sky with wispy clouds." width="768" height="1024" loading="lazy" />
+                <figcaption>Yosemite.</figcaption>
+              </figure>
               <h4>Tioga Pass &amp; Tuolumne Meadows</h4>
               <p>From the eastern side, Highway 120 climbs toward Tioga Pass and continues into Yosemite. The park's 47-mile stretch of Tioga Road runs between the pass and Crane Flat, through a landscape of granite, lakes, forest, and open meadows.</p>
               <p>Beyond the pass, Tuolumne Meadows opens up around the winding Tuolumne River, with grassland, granite domes, and peaks giving the drive a different setting.</p>
