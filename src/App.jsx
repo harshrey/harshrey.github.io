@@ -268,9 +268,6 @@ export default function App() {
           >
             shreya hardas
           </Heading>
-          <Text lang="mr" fontFamily="'Nirmala UI', 'Noto Serif Devanagari', serif" fontSize="md" lineHeight="1.4" color="#7e5145">
-            श्रेया
-          </Text>
         </VStack>
         <Router>
           <Nav />
