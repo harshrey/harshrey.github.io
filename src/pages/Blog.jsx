@@ -109,7 +109,7 @@ const BLOG_POSTS = [
   },
   {
     id: 6,
-    title: "Highway 395: old earth, fleeting color",
+    title: "Highway 395: A Road Trip",
     date: "October 29, 2026",
     href: "/blog/highway-395"
   },
@@ -253,12 +253,12 @@ const BlogPost = ({ post }) => {
   if (post.href) {
     return (
       <Box as="article" aria-label="Highway 395 road trip" w="100%">
-        <Text fontFamily="Georgia, 'Times New Roman', serif" fontSize="xs" color="gray.500" mb={3}>
-          {post.date}
-        </Text>
         <Heading as="h2" size="xl" fontFamily="var(--title-font)" fontWeight="400" color="black">
           <Link to={post.href}>{post.title}</Link>
         </Heading>
+        <Text fontSize="sm" color="gray.500" mb={2}>
+          {post.date}
+        </Text>
       </Box>
     );
   }
